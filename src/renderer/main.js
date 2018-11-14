@@ -2,6 +2,9 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import VModal from 'vue-js-modal'
+import VueGoodWizard from 'vue-good-wizard';
+
+Vue.use(VueGoodWizard);
 
 Vue.use(VModal)
 

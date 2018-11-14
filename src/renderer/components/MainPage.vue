@@ -48,16 +48,17 @@
       
     <div>
     Total amount is :  ${{amount}}
+   
     </div>
   <!-- <router-link :to="{ name: 'print'}">User</router-link> -->
-  <modal name="payment">
+  <modal name="payment" height="80%" width="95%">
     <payments v-bind:time="amount" v-bind:from="timeFromNow" v-bind:to="timeLater" v-bind:length="formatedMins" 
     v-bind:fromDate="date" v-bind:toDate="todate"
     ></payments>
     <button v-on:click="close"> Cancel </button> <button v-on:click="reset"> Pay Now </button>
   </modal>
   <button v-on:click="show">Pay Now</button>
-
+   <button v-on:click="reset">Clear</button>
   </div>
 </template>
 
@@ -80,7 +81,8 @@ import { format } from 'url';
       months : ['January','February','March','April','May','June','July','August','September','October','November','December'],
       nums : ['st','nd','rd','th'],
       formatedMins : '',
-      todate : []
+      todate : [],
+      rate : 0.25
     }
   },
   created () {
@@ -165,10 +167,10 @@ import { format } from 'url';
       this.$modal.hide('payment')
     },
     getAmount(){
-      this.amount = (0.25 * this.futureMin).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
+      this.amount = (this.rate * this.futureMin).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
     },
     reset (){
-      
+      this.futureMin = 30;
     }
   }
   }

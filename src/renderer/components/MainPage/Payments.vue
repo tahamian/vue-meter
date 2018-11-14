@@ -1,5 +1,26 @@
 <template>
   <div>
+    <vue-good-wizard
+      :steps="steps"
+      :onNext="nextClicked" 
+      :onBack="backClicked">
+      <div slot="page1">
+        <h4>Step 1</h4>
+        <p>This is step 1</p>
+      </div>
+      <div slot="page2">
+        <h4>Step 2</h4>
+        <p>This is step 2</p>
+      </div>
+      <div slot="page3">
+        <h4>Step 3</h4>
+        <p>This is step 3</p>
+      </div>
+      <div slot="page4">
+        <h4>Step 4</h4>
+        <p>This is step 4</p>
+      </div>
+    </vue-good-wizard>
     <div class="title">Information</div>
     <div class="items">
       <div class="item">
@@ -29,10 +50,40 @@
         to_t : this.to,
         fromDate_t : this.fromDate,
         toDate_t : this.toDate,
-        length_t : this.length
-
+        length_t : this.length,
+        steps: [
+        {
+          label: 'Select Items',
+          slot: 'page1',
+        },
+        {
+          label: 'Add Constraints',
+          slot: 'page2',
+        },
+        {
+          label: 'Review',
+          slot: 'page3',
+        },
+        {
+          label: 'Apply',
+          slot: 'page4',
+          options: {
+            nextDisabled: true
+          },
+        }
+      ],
       }
+    },
+    methods: {
+    nextClicked(currentPage) {
+      console.log('next clicked', currentPage)
+      return true; 
+    },
+    backClicked(currentPage) {
+      console.log('back clicked', currentPage);
+      return true;
     }
+  }
   }
 </script>
 
