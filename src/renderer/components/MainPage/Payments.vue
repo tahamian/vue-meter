@@ -7,18 +7,30 @@
         <div class="value"></div>
       </div>
       <div class="item">
-        <div class="name">Pick Time</div>
-        <div class="value"></div>
+        From to
       </div>
+      {{num_time}}
+      {{from_t}}
+      {{to_t}}
+      {{fromDate_t}}
+      {{toDate_t}}
+      {{length_t}}
     </div>
   </div>
 </template>
 
 <script>
   export default {
+    props : ['time', 'from', 'to', 'fromDate', 'toDate', 'length'],
     data () {
       return {
-        
+        num_time : this.time,
+        from_t : this.from,
+        to_t : this.to,
+        fromDate_t : this.fromDate,
+        toDate_t : this.toDate,
+        length_t : this.length
+
       }
     }
   }

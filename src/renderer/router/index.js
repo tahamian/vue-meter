@@ -7,17 +7,17 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'landing-page',
-      component: require('@/components/LandingPage').default
+      name: 'Main-Page',
+      component: require('@/components/MainPage').default
     },
     {
       path: '*',
       redirect: '/'
     },
-    {
-      path : '/print',
-      name : "print",
-      component : require('@/components/print').default
-    }
+    // {
+    //   path : '/print',
+    //   name : "print",
+    //   component : require('@/components/print').default
+    // }
   ]
 })

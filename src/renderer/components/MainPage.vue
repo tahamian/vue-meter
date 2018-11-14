@@ -6,54 +6,81 @@
         <span class="title">
           Welcome to the Parking Meter!
         </span>
-        <system-information></system-information>
       </div>
       </main>
-      <div>
-        <button v-on:click="add_time">+</button>
-        <button v-on:click="remove_time" :disabled="futureMin <=30">-</button>
+      <button v-on:click="toggle_ampm"><div v-if="ampm == true">24-Hour Clock</div><div v-if="ampm == false">12-Hour Clock</div></button>
+      <br>
+      Increment the Minutes by interval of 30 mins
+      <div class="min-change">
+        <button v-on:click="add_time(30)">+</button>
+        <button v-on:click="remove_time(60)" :disabled="futureMin <=30">-</button>
        </div>
-      <br>
-      <!-- {{time}} -->
-      {{timeFromNow}}
-      <br>
-      {{timeLater}}
-      <br/>
-      {{formatedMins}}
-      <br>
+       Increment hour by interval of 1 hour
+        <div class="hour-change">
+        <button v-on:click="add_time(60)">+</button>
+        <button v-on:click="remove_time(60)" :disabled="futureMin <=30">-</button>
+       </div>
       
-    
-    <button v-on:click="toggle_ampm">Toggle AM/PM</button>
-    
-    <br>
+      <br>
+      Time right now 
+       <br>
       <span>{{date[0]}} </span>&nbsp;
       <span> {{ date[1] }} </span>&nbsp;
       <span>{{date[2]}}</span> 
       <span><sup> {{date[3]}} </sup></span>&nbsp; 
       <span>{{date[4]}}</span> 
+      {{timeFromNow}}
+      <br>
+      Time until :  
+      <br>
+      <span>{{todate[0]}} </span>&nbsp;
+      <span> {{ todate[1] }} </span>&nbsp;
+      <span>{{todate[2]}}</span> 
+      <span><sup> {{todate[3]}} </sup></span>&nbsp; 
+      <span>{{todate[4]}}</span> 
+      
+      {{timeLater}}
+      <br/>
 
-  <router-link :to="{ name: 'print'}">User</router-link>
+      Total time
+      {{formatedMins}}
+      <br>
+      
+    <div>
+    Total amount is :  ${{amount}}
+    </div>
+  <!-- <router-link :to="{ name: 'print'}">User</router-link> -->
+  <modal name="payment">
+    <payments v-bind:time="amount" v-bind:from="timeFromNow" v-bind:to="timeLater" v-bind:length="formatedMins" 
+    v-bind:fromDate="date" v-bind:toDate="todate"
+    ></payments>
+    <button v-on:click="close"> Cancel </button> <button v-on:click="reset"> Pay Now </button>
+  </modal>
+  <button v-on:click="show">Pay Now</button>
+
   </div>
 </template>
 
 <script>
-  import SystemInformation from './LandingPage/SystemInformation'
+  import Payments from './MainPage/Payments'
   // import moment from 'moment'
 import { format } from 'url';
   export default {
     name: 'landing-page',
-    components: { SystemInformation },
+    components: { Payments },
     data () {
     return {
       timeFromNow: null,
       timeLater : null,
       date : [],
       futureMin : 30,
-      ampm : 0,
+      amount : '',
+      ampm : true,
       days : ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
       months : ['January','February','March','April','May','June','July','August','September','October','November','December'],
       nums : ['st','nd','rd','th'],
-      formatedMins : ''
+      formatedMins : '',
+      todate : []
     }
   },
   created () {
@@ -66,11 +93,17 @@ import { format } from 'url';
   methods: {
     getTimeFromNow () {
       this.timeFromNow = this.formatTime(new Date())
-      let timeL =  new Date()
-      timeL.setMinutes(timeL.getMinutes() + this.futureMin )
-      this.timeLater = this.formatTime(timeL);
       this.date = this.formatDate(new Date())
+      
+      let timeL =  new Date()
+      
+      timeL.setMinutes(timeL.getMinutes() + this.futureMin );
+      this.timeLater = this.formatTime(timeL);
+      
+      this.todate = this.formatDate(timeL);
+
       this.formatedMins = this.formatMin()
+      this.getAmount()
     },
     formatDate(date){
       let superscript = date.getDate()
@@ -110,13 +143,13 @@ import { format } from 'url';
     toggle_ampm() {
       this.ampm = !this.ampm
     },
-    add_time () {
-      this.futureMin += 30
+    add_time (num) {
+      this.futureMin += num
       this.formatedMins = this.formatMin()
     },
-    remove_time (){
-      if( ! (this.futureMin <= 30)){
-        this.futureMin -= 30
+    remove_time (num){
+      if( ! (this.futureMin <= num)){
+        this.futureMin -= num
         this.formatedMins = this.formatMin()
       }
     },
@@ -124,6 +157,18 @@ import { format } from 'url';
       let hours = Math.floor( this.futureMin / 60 )
       let mins = this.futureMin % 60
       return hours + ' Hours and ' + mins + ' Minutes' 
+    },
+    show (){
+        this.$modal.show('payment')
+      },
+    close (){
+      this.$modal.hide('payment')
+    },
+    getAmount(){
+      this.amount = (0.25 * this.futureMin).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
+    },
+    reset (){
+      
     }
   }
   }
