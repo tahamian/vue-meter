@@ -56,10 +56,13 @@
     <payments v-bind:time="amount" v-bind:from="timeFromNow" v-bind:to="timeLater" v-bind:length="formatedMins" 
     v-bind:fromDate="date" v-bind:toDate="todate"
     ></payments>
-    <button v-on:click="close"> Cancel </button> <button v-on:click="reset"> Pay Now </button>
+    <!-- <button v-on:click="close"> Cancel </button>  -->
+    <button v-on:click="reset"> Pay Now </button>
   <!-- </modal> -->
   <!-- <button v-on:click="show">Pay Now</button>
    <button v-on:click="reset">Clear</button> -->
+
+   
   </div>
 </template>
 
@@ -179,7 +182,7 @@ import { format } from 'url';
 </script>
 
 <style>
-  @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+  /* @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro'); */
 
   * {
     box-sizing: border-box;
