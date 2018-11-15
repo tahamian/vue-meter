@@ -48,27 +48,29 @@
       
     <div>
     Total amount is :  ${{amount}}
-   
+    <cash></cash>
     </div>
   <!-- <router-link :to="{ name: 'print'}">User</router-link> -->
-  <modal name="payment" height="80%" width="95%">
+  <!-- <modal name="payment" height="80%" width="95%"> -->
+
     <payments v-bind:time="amount" v-bind:from="timeFromNow" v-bind:to="timeLater" v-bind:length="formatedMins" 
     v-bind:fromDate="date" v-bind:toDate="todate"
     ></payments>
     <button v-on:click="close"> Cancel </button> <button v-on:click="reset"> Pay Now </button>
-  </modal>
-  <button v-on:click="show">Pay Now</button>
-   <button v-on:click="reset">Clear</button>
+  <!-- </modal> -->
+  <!-- <button v-on:click="show">Pay Now</button>
+   <button v-on:click="reset">Clear</button> -->
   </div>
 </template>
 
 <script>
   import Payments from './MainPage/Payments'
+  import Cash from './MainPage/Cash'
   // import moment from 'moment'
 import { format } from 'url';
   export default {
     name: 'landing-page',
-    components: { Payments },
+    components: { Payments, Cash },
     data () {
     return {
       timeFromNow: null,
