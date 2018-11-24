@@ -13,12 +13,12 @@
       Increment the Minutes by interval of 30 mins
       <div class="min-change">
         <button v-on:click="add_time(30)">+</button>
-        <button v-on:click="remove_time(60)" :disabled="futureMin <=30">-</button>
+        <button v-on:click="remove_time(30)" :disabled="futureMin <=30">-</button>
        </div>
        Increment hour by interval of 1 hour
         <div class="hour-change">
         <button v-on:click="add_time(60)">+</button>
-        <button v-on:click="remove_time(60)" :disabled="futureMin <=30">-</button>
+        <button v-on:click="remove_time(60)" :disabled="futureMin <=60">-</button>
        </div>
       
       <br>
@@ -155,8 +155,8 @@ import { format } from 'url';
       this.formatedMins = this.formatMin()
     },
     remove_time (num){
-      if( ! (this.futureMin <= num)){
-        this.futureMin -= num
+      if( (this.futureMin > num)){
+        this.futureMin = this.futureMin - num
         this.formatedMins = this.formatMin()
       }
     },
