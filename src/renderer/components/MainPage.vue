@@ -43,17 +43,17 @@
       <br/>
 
       Total time
-      {{formatedMins}}
+      {{formattedMins}}
       <br>
       
     <div>
-    Total amount is :  ${{amount}}
+    Total amount is :  ${{amountDisplay}}
     <cash></cash>
     </div>
   <!-- <router-link :to="{ name: 'print'}">User</router-link> -->
   <!-- <modal name="payment" height="80%" width="95%"> -->
 
-    <payments v-bind:time="amount" v-bind:from="timeFromNow" v-bind:to="timeLater" v-bind:length="formatedMins" 
+    <payments v-bind:time="amount" v-bind:from="timeFromNow" v-bind:to="timeLater" v-bind:length="formattedMins" 
     v-bind:fromDate="date" v-bind:toDate="todate"
     ></payments>
     <!-- <button v-on:click="close"> Cancel </button>  -->
@@ -67,28 +67,31 @@
 </template>
 
 <script>
-  import Payments from './MainPage/Payments'
-  import Cash from './MainPage/Cash'
-  // import moment from 'moment'
+import Payments from './MainPage/Payments'
+import Cash from './MainPage/Cash'
+// import moment from 'moment'
 import { format } from 'url';
   export default {
     name: 'landing-page',
     components: { Payments, Cash },
     data () {
-    return {
-      timeFromNow: null,
-      timeLater : null,
-      date : [],
-      futureMin : 30,
-      amount : '',
-      ampm : true,
-      days : ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
-      months : ['January','February','March','April','May','June','July','August','September','October','November','December'],
-      nums : ['st','nd','rd','th'],
-      formatedMins : '',
-      todate : [],
-      rate : 0.25
-    }
+      return {
+        timeFromNow: null,
+        timeLater : null,
+        date : [],
+        futureMin : 30,
+        amount : 0.0,
+        amountDisplay : '',
+        balance : 0.0,
+        balanceDdisplay : '',
+        ampm : true,
+        days : ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
+        months : ['January','February','March','April','May','June','July','August','September','October','November','December'],
+        nums : ['st','nd','rd','th'],
+        formattedMins : '',
+        todate : [],
+        rate : 0.25
+      }
   },
   created () {
     this.getTimeFromNow()
@@ -109,7 +112,7 @@ import { format } from 'url';
       
       this.todate = this.formatDate(timeL);
 
-      this.formatedMins = this.formatMin()
+      this.formattedMins = this.formatMin()
       this.getAmount()
     },
     formatDate(date){
@@ -152,12 +155,12 @@ import { format } from 'url';
     },
     add_time (num) {
       this.futureMin += num
-      this.formatedMins = this.formatMin()
+      this.formattedMins = this.formatMin()
     },
     remove_time (num){
       if( (this.futureMin > num)){
         this.futureMin = this.futureMin - num
-        this.formatedMins = this.formatMin()
+        this.formattedMins = this.formatMin()
       }
     },
     formatMin() {
@@ -172,13 +175,14 @@ import { format } from 'url';
       this.$modal.hide('payment')
     },
     getAmount(){
-      this.amount = (this.rate * this.futureMin).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
+      this.amount = this.rate * this.futureMin
+      this.amountDisplay = this.amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
     },
     reset (){
       this.futureMin = 30;
     }
   }
-  }
+}
 </script>
 
 <style>
