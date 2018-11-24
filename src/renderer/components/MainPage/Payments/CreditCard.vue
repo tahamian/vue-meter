@@ -1,17 +1,23 @@
 <template>
 <div >
-   {{image}}
+   
   </div>
 </template>
 
 <script>
+// import { card }  from 'vuejs-credit-card'
+
+// import card from './Card'
+
 export default{
-    name : 'bitcoin',
+    name : 'creditcard',
+     components: {
+    
+    },
     data (){
         return{
             image : 'just do it'
         }
-        
     },
     methods : {
         

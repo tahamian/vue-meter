@@ -20,12 +20,12 @@
     </div>
     <b-card no-body class="mb-1">
       <b-card-header header-tag="header" class="p-1" role="tab">
-        <b-btn block href="#" v-b-toggle.accordion1 variant="info">Accordion 1</b-btn>
+        <b-btn block href="#" v-b-toggle.accordion1 variant="info">Cash</b-btn>
       </b-card-header>
       <b-collapse id="accordion1" visible accordion="my-accordion" role="tabpanel">
         <b-card-body>
           <p class="card-text">
-            I start opened because <code>visible</code> is <code>true</code>
+            <cash> </cash>
           </p>
           <p class="card-text">
             Im a flop
@@ -35,12 +35,12 @@
     </b-card>
     <b-card no-body class="mb-1">
       <b-card-header header-tag="header" class="p-1" role="tab">
-        <b-btn block href="#" v-b-toggle.accordion2 variant="info">Accordion 2</b-btn>
+        <b-btn block href="#" v-b-toggle.accordion2 variant="info">Credit/Debit Card</b-btn>
       </b-card-header>
       <b-collapse id="accordion2" accordion="my-accordion" role="tabpanel">
         <b-card-body>
           <p class="card-text">
-            I am a gordo
+            <credit-card></credit-card>
           </p>
         </b-card-body>
       </b-collapse>
@@ -52,7 +52,8 @@
       <b-collapse id="accordion3" accordion="my-accordion" role="tabpanel">
         <b-card-body>
           <p class="card-text">
-            <bitcoin v-bind:amount="bitcoins"> </bitcoin>
+            <bitcoin v-bind:amount="bitcoins"> 
+            </bitcoin>
           </p>
         </b-card-body>
       </b-collapse>

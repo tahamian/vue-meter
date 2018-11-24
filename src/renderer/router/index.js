@@ -14,10 +14,5 @@ export default new Router({
       path: '*',
       redirect: '/'
     },
-    // {
-    //   path : '/print',
-    //   name : "print",
-    //   component : require('@/components/print').default
-    // }
   ]
 })
