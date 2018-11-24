@@ -1,6 +1,15 @@
 <template>
-  <div id="wrapper">
-    
+  <div
+    id="wrapper"
+    v-shortkey="{
+      insertPenny: ['ctrl', '1'],
+      insertNickel: ['ctrl', '2'],
+      insertDime: ['ctrl', '3'],
+      insertQuarter: ['ctrl', '4'],
+      insertLoonie: ['ctrl', '5'],
+      insertToonie: ['ctrl', '6'],
+      returnCoins: ['ctrl', '7'] }" 
+    @shortkey="keyboardShortcut">
     <main>
       <div>
         <span class="title">
@@ -48,6 +57,8 @@
       
     <div>
     Total amount is :  ${{amountDisplay}}
+    </br></br>
+    Current balance is : ${{balanceDisplay}}
     <cash></cash>
     </div>
   <!-- <router-link :to="{ name: 'print'}">User</router-link> -->
@@ -83,7 +94,7 @@ import { format } from 'url';
         amount : 0.0,
         amountDisplay : '',
         balance : 0.0,
-        balanceDdisplay : '',
+        balanceDisplay : '0.00',
         ampm : true,
         days : ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
         months : ['January','February','March','April','May','June','July','August','September','October','November','December'],
@@ -101,6 +112,44 @@ import { format } from 'url';
     clearInterval(this.getTimeFromNow)
   },
   methods: {
+    formatPrice(num) {
+      return num.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+    },
+    insertCoin (amount) {
+      this.balance += amount;
+      this.balanceDisplay = this.formatPrice(this.balance);
+      console.log('Insert coin: ', amount);
+    },
+    returnCoins () {
+      this.balance = 0;
+      this.balanceDisplay = this.formatPrice(this.balance);
+      console.log('Returning coins');
+    },
+    keyboardShortcut (event) {
+      switch (event.srcKey) {
+        case 'insertPenny':
+          this.insertCoin(0.01);
+          break;
+        case 'insertNickel':
+          this.insertCoin(0.05);
+          break;
+        case 'insertDime':
+          this.insertCoin(0.1);
+          break;
+        case 'insertQuarter':
+          this.insertCoin(0.25);
+          break;
+        case 'insertLoonie':
+          this.insertCoin(1);
+          break;
+        case 'insertToonie':
+          this.insertCoin(2);
+          break;
+        case 'returnCoins':
+          this.returnCoins();
+          break;
+      }
+    },
     getTimeFromNow () {
       this.timeFromNow = this.formatTime(new Date())
       this.date = this.formatDate(new Date())
@@ -176,7 +225,7 @@ import { format } from 'url';
     },
     getAmount(){
       this.amount = this.rate * this.futureMin
-      this.amountDisplay = this.amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
+      this.amountDisplay = this.formatPrice(this.amount);
     },
     reset (){
       this.futureMin = 30;
