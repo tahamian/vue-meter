@@ -4,7 +4,7 @@ import router from './router'
 import BootstrapVue from 'bootstrap-vue'
 
 Vue.use(BootstrapVue);
-
+Vue.use(require('vue-shortkey'))
 
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.config.productionTip = false
