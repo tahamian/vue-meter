@@ -8,24 +8,11 @@
         </span>
       </div>
       </main>
-      <button v-on:click="toggle_ampm">
-        <div v-if="ampm == true">24-Hour Clock</div>
-        <div v-if="ampm == false">12-Hour Clock</div>
-        </button>
+     
+     <!--
+      <div>
       <br>
-      Increment the Minutes by interval of 30 mins
-      <div class="min-change">
-        <button v-on:click="add_time(15)">+</button>
-        <button v-on:click="remove_time(15)" :disabled="futureMin <=15">-</button>
-       </div>
-       Increment hour by interval of 1 hour
-        <div class="hour-change">
-        <button v-on:click="add_time(60)">+</button>
-        <button v-on:click="remove_time(60)" :disabled="futureMin <=60">-</button>
-       </div>
-      
-      <br>
-      Time right now 
+      Current Time:
        <br>
       <span>{{date[0]}} </span>&nbsp;
       <span> {{ date[1] }} </span>&nbsp;
@@ -34,11 +21,65 @@
       <span>{{date[4]}}</span> 
       {{timeFromNow}}
       <br>
-      Time until :  
+      </div>
+      -->
+      
+      <div class="divider"> 
+        <span>24-Hour </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <toggle-button id = "toggleButton" @change="toggle_ampm"/>   
+      </div>
       <br>
-      <span>{{todate[0]}} </span>&nbsp;
-      <span> {{ todate[1] }} </span>&nbsp;
+      
+      
+      <!--
+      <div class="changeTime">     
+          Select Amount of Time:
+          <button display = "inline-block" v-on:click="add_time(60)">+</button>
+          <span>{{hours}}</span>
+          <button v-on:click="remove_time(60)" :disabled="futureMin <=60">-</button>
+          <span>hours</span>&nbsp;
+          <button display = "inline-block" v-on:click="add_time(15)">+</button>
+          <span>{{mins}}</span>
+          <button v-on:click="remove_time(15)" :disabled="futureMin <=15">-</button>
+          <span>minutes</span>
+
+           <span> {{ todate[1] }} </span>&nbsp;
       <span>{{todate[2]}}</span> 
+
+      </div>
+      -->
+
+      <div>
+      <span>Select Amount Of Time:</span>
+      </div>
+
+      <div class="box2">
+        
+        <b-button class="btn btn-success btn-number"  v-on:click="add_time(60)" >+</b-button>
+       
+        <p class = "textHour">{{hours}}&nbsp;&nbsp;hours</p> 
+      <b-button class="btn btn-danger btn-number" style="width:38px" v-on:click="remove_time(60)" :disabled="futureMin <=60">-</b-button>
+      </div>
+
+      <div class="box2">
+        <div>
+        <b-button class="btn btn-success btn-number" v-on:click="add_time(15)" >+</b-button>
+        <p class = "textHour">{{mins}}&nbsp;&nbsp;minutes</p> 
+        <b-button class="btn btn-danger btn-number" style="width:38px" v-on:click="remove_time(15)" :disabled="futureMin <=15">-</b-button>
+        </div>
+      </div>
+     
+
+  
+        
+        
+     
+    
+        
+      <br>
+       <span>Your parking will expire at:  :</span>
+      <span>{{todate[0]}}, {{ todate[1] }}, {{todate[2]}} </span>&nbsp;
+     
       <span><sup> {{todate[3]}} </sup></span>&nbsp; 
       <span>{{todate[4]}}</span> 
       
@@ -51,12 +92,12 @@
       
     <div>
     Total amount is :  ${{amount}}
-    <cash></cash>
     </div>
 
-    <payments v-bind:time="amount" v-bind:from="timeFromNow" v-bind:to="timeLater" v-bind:length="formatedMins" 
+    <PaymentOptions v-bind:time="amount" v-bind:from="timeFromNow" 
+    v-bind:to="timeLater" v-bind:length="formatedMins" 
     v-bind:fromDate="date" v-bind:toDate="todate"
-    ></payments>
+    ></PaymentOptions>
     
     <button v-on:click="reset"> Pay Now </button>
 
@@ -65,12 +106,11 @@
 </template>
 
 <script>
-  import Payments from './MainPage/Payments'
-  import Cash from './MainPage/Cash'
+  import PaymentOptions from './MainPage/PaymentOptions'
 import { format } from 'url';
   export default {
     name: 'landing-page',
-    components: { Payments, Cash },
+    components: { PaymentOptions },
     data () {
     return {
       timeFromNow: null,
@@ -83,6 +123,8 @@ import { format } from 'url';
       months : ['January','February','March','April','May','June','July','August','September','October','November','December'],
       nums : ['st','nd','rd','th'],
       formatedMins : '',
+      mins : '',
+      hours : '',
       todate : [],
       rate : 0.25
     }
@@ -107,6 +149,8 @@ import { format } from 'url';
       this.todate = this.formatDate(timeL);
 
       this.formatedMins = this.formatMin()
+      this.mins = this.getMin()
+      this.hours = this.getHour()
       this.getAmount()
     },
     formatDate(date){
@@ -150,17 +194,29 @@ import { format } from 'url';
     add_time (num) {
       this.futureMin += num
       this.formatedMins = this.formatMin()
+      this.mins = this.getMin()
+      this.hours = this.getHour()
     },
     remove_time (num){
       if( (this.futureMin > num)){
         this.futureMin = this.futureMin - num
         this.formatedMins = this.formatMin()
+        this.mins = this.getMin()
+        this.hours = this.getHour()
       }
     },
     formatMin() {
       let hours = Math.floor( this.futureMin / 60 )
       let mins = this.futureMin % 60
       return hours + ' Hours and ' + mins + ' Minutes' 
+    },
+    getMin() {
+      let mins = this.futureMin % 60
+      return mins 
+    },
+    getHour() {
+      let hours = Math.floor( this.futureMin / 60 )
+      return hours 
     },
     show (){
         this.$modal.show('payment')
@@ -242,6 +298,34 @@ import { format } from 'url';
     margin-bottom: 10px;
   }
 
+  .divider {
+    display: inline-block;
+    margin: 0;
+    
+  }
+
+  .changeHour{
+    position: relative;
+    padding-top: 30px;
+    left: 50px;
+    
+  }
+  
+
+
+  .box2 {
+    display: inline-block;
+    padding: 50px;
+   
+  }
+
+  .textHour{
+    position: relative;
+    padding-top: 10px;
+    left: 10px;
+    
+  }
+
   .doc button {
     font-size: .8em;
     cursor: pointer;
@@ -260,4 +344,10 @@ import { format } from 'url';
     color: #42b983;
     background-color: transparent;
   }
+
+
+  .floated {
+   float:left;
+   margin-right:5px;
+}
 </style>

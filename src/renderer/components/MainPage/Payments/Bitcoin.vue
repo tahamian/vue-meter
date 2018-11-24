@@ -1,34 +1,31 @@
 <template>
-<div >
-   Hello
-   <img v-bind:src="image">
-   {{hello}}
-  </div>
+<div>
+  <img src="/src/renderer/assets/QR.svg" alt="QR Code not avaiable">
+ <br>
+ <div> 
+     Bitcoins : {{bitcoin}}
+     <br>
+    Wallet : {{wallet}}
+</div>
+</div>
+
 </template>
 
 <script>
-import QRCode from 'qrcode'
-// let hello = '';
 export default{
     name : 'bitcoin',
-    data (){
-        return{
-            image : ''
+    props : ['amount'],
+    data() {
+        return {
+            bitcoin: this.amount,
+            wallet : '1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2'
         }
-        
     },
     methods : {
         getQR(){
             
-        QRCode.toDataURL('I am a pony!', function (err, url) {
-        console.log(url)
-        })
-
         }
     },
-    beforeMount (){
-        this.getQR()
-    }
 }
 </script>
 <style>
