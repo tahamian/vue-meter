@@ -34,7 +34,7 @@
       <b-collapse id="accordion3" accordion="my-accordion" role="tabpanel">
         <b-card-body>
           <p class="card-text">
-            {{ text }}
+            <bitcoin> </bitcoin>
           </p>
         </b-card-body>
       </b-collapse>
@@ -43,8 +43,10 @@
 </template>
 
 <script>
+import Bitcoin from './Payments/Bitcoin'
 export default{
     name : 'cash',
+    components: { Bitcoin },
     data () {
         return {
             text : `Hello world !`

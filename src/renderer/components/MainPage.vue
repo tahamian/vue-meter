@@ -8,12 +8,15 @@
         </span>
       </div>
       </main>
-      <button v-on:click="toggle_ampm"><div v-if="ampm == true">24-Hour Clock</div><div v-if="ampm == false">12-Hour Clock</div></button>
+      <button v-on:click="toggle_ampm">
+        <div v-if="ampm == true">24-Hour Clock</div>
+        <div v-if="ampm == false">12-Hour Clock</div>
+        </button>
       <br>
       Increment the Minutes by interval of 30 mins
       <div class="min-change">
-        <button v-on:click="add_time(30)">+</button>
-        <button v-on:click="remove_time(30)" :disabled="futureMin <=30">-</button>
+        <button v-on:click="add_time(15)">+</button>
+        <button v-on:click="remove_time(15)" :disabled="futureMin <=15">-</button>
        </div>
        Increment hour by interval of 1 hour
         <div class="hour-change">
@@ -50,17 +53,12 @@
     Total amount is :  ${{amount}}
     <cash></cash>
     </div>
-  <!-- <router-link :to="{ name: 'print'}">User</router-link> -->
-  <!-- <modal name="payment" height="80%" width="95%"> -->
 
     <payments v-bind:time="amount" v-bind:from="timeFromNow" v-bind:to="timeLater" v-bind:length="formatedMins" 
     v-bind:fromDate="date" v-bind:toDate="todate"
     ></payments>
-    <!-- <button v-on:click="close"> Cancel </button>  -->
+    
     <button v-on:click="reset"> Pay Now </button>
-  <!-- </modal> -->
-  <!-- <button v-on:click="show">Pay Now</button>
-   <button v-on:click="reset">Clear</button> -->
 
    
   </div>
@@ -69,7 +67,6 @@
 <script>
   import Payments from './MainPage/Payments'
   import Cash from './MainPage/Cash'
-  // import moment from 'moment'
 import { format } from 'url';
   export default {
     name: 'landing-page',
@@ -79,7 +76,7 @@ import { format } from 'url';
       timeFromNow: null,
       timeLater : null,
       date : [],
-      futureMin : 30,
+      futureMin : 15,
       amount : '',
       ampm : true,
       days : ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
@@ -175,7 +172,7 @@ import { format } from 'url';
       this.amount = (this.rate * this.futureMin).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
     },
     reset (){
-      this.futureMin = 30;
+      this.futureMin = 15;
     }
   }
   }
