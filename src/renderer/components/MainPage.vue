@@ -1,14 +1,15 @@
 <template>
-  <div id="wrapper">
+  <div id="wrapper" align="center">
     
     <main>
-      <div>
-        <span class="title">
-          Welcome to the Parking Meter!
-        </span>
-      </div>
+      
       </main>
-     
+     <div class ="d-flex justify-content-center">
+        <h1>Welcome to the Parking Meter!</h1>
+      </div>
+
+      <br>
+      <br>
      <!--
       <div>
       <br>
@@ -23,13 +24,13 @@
       <br>
       </div>
       -->
-      
+      <!--
       <div class="divider"> 
         <span>24-Hour </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <toggle-button id = "toggleButton" @change="toggle_ampm"/>   
       </div>
       <br>
-      
+      -->
       
       <!--
       <div class="changeTime">     
@@ -50,16 +51,19 @@
       -->
 
       <div>
-      <span>Select Amount Of Time:</span>
+      <h4>Select Amount Of Time:</h4>
       </div>
 
       <div class="box2">
         
         <b-button class="btn btn-success btn-number"  v-on:click="add_time(60)" >+</b-button>
        
-        <p class = "textHour">{{hours}}&nbsp;&nbsp;hours</p> 
+        <p class = "textHour">{{hours}}&nbsp;&nbsp;hours </p> 
+       
       <b-button class="btn btn-danger btn-number" style="width:38px" v-on:click="remove_time(60)" :disabled="futureMin <=60">-</b-button>
       </div>
+
+
 
       <div class="box2">
         <div>
@@ -72,12 +76,18 @@
 
   
         
-        
-     
+     <div class = "d-flex justify-content-center"> 
+      <h2>Your parking will expire at : </h2>
+     </div>
+     <br>
+
+     <div class = "d-flex justify-content-center"> 
+       <h5>{{todate[0]}}, {{ todate[1] }}, {{todate[2]}}{{todate[3]}}, <span>{{todate[4]}}</span> {{timeLater}}  </h5>&nbsp;
+     </div>
     
         
       <br>
-       <span>Your parking will expire at:  :</span>
+      <!--
       <span>{{todate[0]}}, {{ todate[1] }}, {{todate[2]}} </span>&nbsp;
      
       <span><sup> {{todate[3]}} </sup></span>&nbsp; 
@@ -89,11 +99,11 @@
       Total time
       {{formatedMins}}
       <br>
-      
+      -->
     <div>
-    Total amount is :  ${{amount}}
+    <h4> Total amount is :  ${{amount}}   </h4>
     </div>
-
+    <br>
     <PaymentOptions v-bind:time="amount" v-bind:from="timeFromNow" 
     v-bind:to="timeLater" v-bind:length="formatedMins" 
     v-bind:fromDate="date" v-bind:toDate="todate"
@@ -306,16 +316,20 @@ import { format } from 'url';
 
   .changeHour{
     position: relative;
-    padding-top: 30px;
+    padding-top: 20px;
     left: 50px;
     
   }
   
-
+  .box1 {
+    display: inline-block;
+    
+   
+  }
 
   .box2 {
     display: inline-block;
-    padding: 50px;
+    padding: 30px;
    
   }
 

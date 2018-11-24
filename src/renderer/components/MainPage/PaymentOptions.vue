@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div style="width:400px">
+    <!--
     <div class="title">Information</div>
     <div class="items">
       <div class="item">
@@ -18,6 +19,7 @@
       {{bitcoins}}
       <br>
     </div>
+    -->
     <b-card no-body class="mb-1">
       <b-card-header header-tag="header" class="p-1" role="tab">
         <b-btn block href="#" v-b-toggle.accordion1 variant="info">Accordion 1</b-btn>
