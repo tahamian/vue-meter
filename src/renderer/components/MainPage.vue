@@ -51,12 +51,12 @@
       
     <div>
     Total amount is :  ${{amount}}
-    <cash></cash>
     </div>
 
-    <payments v-bind:time="amount" v-bind:from="timeFromNow" v-bind:to="timeLater" v-bind:length="formatedMins" 
+    <PaymentOptions v-bind:time="amount" v-bind:from="timeFromNow" 
+    v-bind:to="timeLater" v-bind:length="formatedMins" 
     v-bind:fromDate="date" v-bind:toDate="todate"
-    ></payments>
+    ></PaymentOptions>
     
     <button v-on:click="reset"> Pay Now </button>
 
@@ -65,12 +65,11 @@
 </template>
 
 <script>
-  import Payments from './MainPage/Payments'
-  import Cash from './MainPage/Cash'
+  import PaymentOptions from './MainPage/PaymentOptions'
 import { format } from 'url';
   export default {
     name: 'landing-page',
-    components: { Payments, Cash },
+    components: { PaymentOptions },
     data () {
     return {
       timeFromNow: null,
