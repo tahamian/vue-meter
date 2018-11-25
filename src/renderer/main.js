@@ -13,7 +13,7 @@ if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.config.productionTip = false
 
 new Vue({
-  components: { App, Qrcanvas },
+  components: { App,  },
   router,
   el : "#app",
   template: '<App/>'
