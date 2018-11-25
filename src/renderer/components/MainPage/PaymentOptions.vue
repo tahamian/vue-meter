@@ -36,12 +36,12 @@
 
                 <div style="border: 2px solid rgb(161, 161, 161); background: white; padding: 10px 20px; border-radius: 25px;">
                   <img src="../../assets/avatar.png" alt="">
-                <!-- <br> <b> Ticket ID: </b>{{$route.params.currentTic.id}}
-                <br> <b>Parking time:</b> {{$route.params.currentTic.time}}
-                <br> <b> Amount:  $</b> {{$route.params.currentTic.amo}}
-                <br> <b> Time of Purchase: </b>  {{$route.params.currentTic.CurrentDate}} <b>@</b>{{$route.params.currentTic.CurrentTime}}
-                <br> <b> Time Until Expiry: </b> {{$route.params.currentTic.ExpiryDate}} <b>@</b> {{$route.params.currentTic.ExpiryTime}}
-                 -->
+                <br> <b> Ticket ID: </b>{{$route.params.id}}
+                <br> <b>Parking time:</b> {{$route.params.time}}
+                <br> <b> Amount:  $</b> {{$route.params.amo}}
+                <br> <b> Time of Purchase: </b>  {{$route.params.CurrentDate}} <b>@</b>{{$route.params.CurrentTime}}
+                <br> <b> Time Until Expiry: </b> {{$route.params.ExpiryDate}} <b>@</b> {{$route.params.ExpiryTime}}
+                
                 <br>
                 <br>
                 <img height="50px" width="150px" src="../../assets/barcode.png" alt=""></div>
@@ -60,8 +60,8 @@
       <b-collapse id="accordion3" accordion="my-accordion" role="tabpanel">
         <b-card-body>
           <p class="card-text">
-            <!-- <bitcoin v-bind:amount="bitcoins"> 
-            </bitcoin> -->
+            <bitcoin v-bind:amount="bitcoins"> 
+            </bitcoin> 
              <div>
               <b-button @click="showModal">
                 Pay to Wallet
@@ -77,11 +77,11 @@
 
                 <div style="border: 2px solid rgb(161, 161, 161); background: white; padding: 10px 20px; border-radius: 25px;">
                   <img src="../../assets/avatar.png" alt="">
-                <!-- <br> <b> Ticket ID: </b>{{$route.params.currentTic.id}}
-                <br> <b>Parking time:</b> {{this.tickets.time}} 
+                 <br> <b> Ticket ID: </b>{{$route.params.id}}
+                <br> <b>Parking time:</b> {{$route.params.time}}
                 <br> <b> Amount Paid: </b> BTC {{bitcoins}}
-                <br> <b> Time of Purchase: </b>  {{this.tickets.CurrentDate}} <b>@</b>{{this.tickets.CurrentTime}}
-                <br> <b> Time Until Expiry: </b> {{this.tickets.ExpiryDate}} <b>@</b> {{this.tickets.ExpiryTime}} -->
+                <br> <b> Time of Purchase: </b>  {{$route.params.CurrentDate}} <b>@</b>{{$route.params.CurrentTime}}
+                <br> <b> Time Until Expiry: </b> {{$route.params.ExpiryDate}} <b>@</b> {{$route.params.ExpiryTime}}
                 
 
                 <br>
@@ -112,7 +112,7 @@ import CreditCard from './Payments/CreditCard'
     components: { Bitcoin, Cash, CreditCard },
     data () {
       return {
-        // bitcoins : parseFloat(parseFloat(this.tickets.amo).toFixed(9) / parseFloat(5670.81).toFixed(9)).toFixed(9)
+        bitcoins : parseFloat(parseFloat(3).toFixed(9) / parseFloat(5670.81).toFixed(9)).toFixed(9)
       }
     },
     methods: {
@@ -125,22 +125,23 @@ import CreditCard from './Payments/CreditCard'
       return true;
     },
     showModal () {
-      console.log(this.tickets)
+      // console.log(this.tickets)
       this.$refs.myModalRef.show()
-      this.$parent.reset()
+      // this.$parent.reset()
       
     },
     hideModal () {
       this.$refs.myModalRef.hide()
-      
+      this.$router.push({name : 'Main-Page'})
     },
     showModal1 (){
-      console.log(this.tickets)
+      // console.log(this.tickets)
       this.$refs.myModalRef1.show()
-      this.$parent.reset()
+      // this.$parent.reset()
     },
     hideModal1 () {
       this.$refs.myModalRef1.hide()
+      this.$router.push({name : 'Main-Page'})
     },
   }
 }
