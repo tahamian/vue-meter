@@ -1,15 +1,12 @@
 <template>
   <div id="wrapper" align="center">
     
-    <main>
-      
-      </main>
      <div class ="d-flex justify-content-center">
         <h1>Welcome to the Parking Meter!</h1>
       </div>
 
       <br>
-      <br>
+      
      <!--
       <div>
       <br>

@@ -61,7 +61,7 @@ export default {
       hours : '',
       todate : [],
       rate : 0.25,
-      id : 0
+      id : null
     }
   },
   
@@ -74,15 +74,14 @@ export default {
       },
 
       getCurrentTime(expireTime){
-        console.log("ExpireDate;")
-        console.log(expireTime)
+      
         var input = new Date(expireTime);
-        console.log("Readable Date")
-        console.log(input)        
+             
         var cur_date_vue = new Date();
         var time = cur_date_vue.getTime()
-        console.log((expireTime - time)*(1/60000))
-        console.log()
+        if(Number((expireTime - time)*(1/60000) * 0.25).toFixed(2)<0){
+            return 0;
+        }
         return Number((expireTime - time)*(1/60000) * 0.25).toFixed(2);
         
         
