@@ -1,17 +1,18 @@
 <template>
 <div >
 
-   
 <b-card no-body>
   <b-tabs pills card>
     <b-tab title="Buy A Ticket" active>
-      <create-ticket>
+      <create-ticket :value="tickets">
    </create-ticket>
     </b-tab>
 
 
-    <b-tab title="Edit a Ticket">
+    <b-tab title="Refund Ticket">
+      {{tickets}}
       <edit-ticket>
+      
         </edit-ticket>
     </b-tab>
   </b-tabs>
@@ -33,6 +34,11 @@ export default{
     data () {
     return {
       tickets : []
+    }
+    },
+    methods : {
+      onChildUpdate(newValue) {
+      this.tickets = newValue
     }
   }
 }

@@ -109,7 +109,7 @@
     v-bind:fromDate="date" v-bind:toDate="todate"
     ></PaymentOptions>
     
-    <!-- <button v-on:click="reset"> Pay Now </button> -->
+    <button v-on:click="reset"> Pay Now </button>
 
    
   </div>
@@ -136,7 +136,8 @@ import { format } from 'url';
       mins : '',
       hours : '',
       todate : [],
-      rate : 0.25
+      rate : 0.25,
+      id : 0
     }
   },
   created () {
@@ -238,14 +239,27 @@ import { format } from 'url';
       this.amount = (this.rate * this.futureMin).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
     },
     reset (){
-      this.futureMin = 15;
+        let tick = {
+            id :  this.id + 1,
+            CurrentTime : this.timeFromNow,
+            CurrentDate : this.Date,
+            ExpiryTime : this.timeLater,
+            ExpiryDate : this.todate,
+            Duration : this.futureMin
+        }
+        this.$emit('update', this.value.push(tick) )
+        this.futureMin = 15;
     }
-  }
+  },
+  mounted (){
+
+  },
+  props : ['value']
   }
 </script>
 
 <style>
-  /* @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro'); */
+  @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 
   * {
     box-sizing: border-box;

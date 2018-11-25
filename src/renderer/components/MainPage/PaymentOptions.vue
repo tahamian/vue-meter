@@ -1,21 +1,13 @@
 <template>
   <div>
-    <div class="title">Information</div>
     <div class="items">
-      <div class="item">
-        <div class="name">Current Time</div>
-        <div class="value"></div>
-      </div>
-      <div class="item">
-        From to
-      </div>
-      {{num_time}}
+      <!-- {{num_time}}
       {{from_t}}
       {{to_t}}
       {{fromDate_t}}
       {{toDate_t}}
       {{length_t}}
-      {{bitcoins}}
+      {{bitcoins}} -->
       <br>
     </div>
     <b-card no-body class="mb-1">
