@@ -18,7 +18,6 @@
   </b-tabs>
 </b-card>
 
-
   </div>
 </template>
 
@@ -40,7 +39,7 @@ export default{
     methods : {
       onChildUpdate(newValue) {
       this.tickets = newValue
-    }
+    },
   }
 }
 </script>

@@ -107,9 +107,10 @@
     <PaymentOptions v-bind:time="amount" v-bind:from="timeFromNow" 
     v-bind:to="timeLater" v-bind:length="formatedMins" 
     v-bind:fromDate="date" v-bind:toDate="todate"
+    v-bind:id="id"
     ></PaymentOptions>
     
-    <button v-on:click="reset"> Pay Now </button>
+    <!-- <button v-on:click="reset"> Pay Now </button> -->
 
    
   </div>
@@ -239,6 +240,7 @@ import { format } from 'url';
       this.amount = (this.rate * this.futureMin).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
     },
     reset (){
+      this.id ++;
         let tick = {
             id :  this.id + 1,
             CurrentTime : this.timeFromNow,
