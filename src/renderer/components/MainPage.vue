@@ -10,8 +10,8 @@
 
 
     <b-tab title="Refund Ticket">
-      {{tickets}}
-      <edit-ticket>
+    
+      <edit-ticket v-bind:tickets="tickets">
       
         </edit-ticket>
     </b-tab>
@@ -34,6 +34,7 @@ export default{
     data () {
     return {
       tickets : []
+
     }
     },
     methods : {
