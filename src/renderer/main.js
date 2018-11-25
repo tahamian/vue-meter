@@ -3,7 +3,6 @@ import App from './App'
 import router from './router'
 import BootstrapVue from 'bootstrap-vue'
 import ToggleButton from 'vue-js-toggle-button'
-import Qrcanvas from 'qrcode'
 
 Vue.use(ToggleButton);
 Vue.use(BootstrapVue);

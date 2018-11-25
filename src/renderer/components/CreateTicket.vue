@@ -140,7 +140,8 @@ import { format } from 'url';
             ExpiryTime : '',
             ExpiryDate : ['','','','',''],
             Duration : '',
-            time : ''
+            time : '',
+            amo : 3.75
         }
     }
   },
@@ -254,7 +255,8 @@ import { format } from 'url';
             ExpiryDate : this.todate[0] + ' '+ this.todate[1]+ ' ' + this.todate[2]  + this.todate[3] + ' ' + this.todate[4],
             Duration : this.futureMin,
             EpochDate: epoch,
-            time : this.formatedMins
+            time : this.formatedMins,
+            amo : this.amount
         }
         this.currentTic = tick
 

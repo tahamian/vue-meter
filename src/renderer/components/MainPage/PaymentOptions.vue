@@ -32,6 +32,33 @@
       <b-collapse id="accordion2" accordion="my-accordion" role="tabpanel">
         <b-card-body>
           <CreditCard></CreditCard>
+          <b-modal ref="myModalRef1" hide-footer title="Ticket Print" size="lg">
+              <div class="d-block text-center">
+                <h3>Thank you!</h3>
+                <div>
+               
+                <!-- <h3 style="margin: 0px; padding: 12px 12px 10px; color: rgba(0, 0, 0, 0.87); font-size: 22px; line-height: 32px; font-weight: 400; border-bottom: none; text-align: center;">Ticket Printed!</h3> -->
+
+                <div style="font-size: 16px; color: rgba(0, 0, 0, 0.6); padding: 0px 10px 12px; box-sizing: border-box; overflow-y: hidden; position: relative; margin: auto; text-align: center; max-height: 626px;">
+
+                <div style="border: 2px solid rgb(161, 161, 161); background: white; padding: 10px 20px; border-radius: 25px;">
+                  <img src="../../assets/avatar.png" alt="">
+                <br> <b> Ticket ID: </b>{{this.tickets.id}}
+                <br> <b>Parking time:</b> {{this.tickets.time}} 
+                <!-- <br> <b> Amount Paid: </b> BTC {{bitcoins}} -->
+                <br> <b> Amount:  $</b> {{this.tickets.amo}}
+                <br> <b> Time of Purchase: </b>  {{this.tickets.CurrentDate}} <b>@</b>{{this.tickets.CurrentTime}}
+                <br> <b> Time Until Expiry: </b> {{this.tickets.ExpiryDate}} <b>@</b> {{this.tickets.ExpiryTime}}
+                
+
+                <br>
+                <br>
+                <img height="50px" width="150px" src="../../assets/barcode.png" alt=""></div>
+                </div>
+                </div>
+              </div>
+            <b-btn class="mt-3" variant="outline-danger" block @click="hideModal1">Close</b-btn>
+            </b-modal>
         </b-card-body>
       </b-collapse>
     </b-card>
@@ -61,7 +88,7 @@
                   <img src="../../assets/avatar.png" alt="">
                 <br> <b> Ticket ID: </b>{{this.tickets.id}}
                 <br> <b>Parking time:</b> {{this.tickets.time}} 
-                <!-- <br> <b> Amount Paid: </b> BTC {{bitcoins}} -->
+                <br> <b> Amount Paid: </b> BTC {{bitcoins}}
                 <br> <b> Time of Purchase: </b>  {{this.tickets.CurrentDate}} <b>@</b>{{this.tickets.CurrentTime}}
                 <br> <b> Time Until Expiry: </b> {{this.tickets.ExpiryDate}} <b>@</b> {{this.tickets.ExpiryTime}}
                 
@@ -93,11 +120,7 @@ import CreditCard from './Payments/CreditCard'
     components: { Bitcoin, Cash, CreditCard },
     data () {
       return {
-        // from : this.tickets[0].CurrentTime,
-        // to : this.tickets[0].ExpiryTime,
-        // fromDate :this.tickets.CurrentDate,
-        // toDate : this.tickets.ExpiryTime,
-        bitcoins : parseFloat(parseFloat(1).toFixed(9) / parseFloat(5670.81).toFixed(9)).toFixed(9)
+        bitcoins : parseFloat(parseFloat(this.tickets.amo).toFixed(9) / parseFloat(5670.81).toFixed(9)).toFixed(9)
       }
     },
     methods: {
@@ -118,7 +141,18 @@ import CreditCard from './Payments/CreditCard'
     hideModal () {
       this.$refs.myModalRef.hide()
       
-    }
+    },
+    showModal1 (){
+      console.log(this.tickets)
+      this.$refs.myModalRef1.show()
+      this.$parent.reset()
+    },
+    hideModal1 () {
+      this.$refs.myModalRef1.hide()
+      
+    },
+
+  }
   }
 </script>
 

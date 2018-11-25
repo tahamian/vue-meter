@@ -125,7 +125,8 @@ export default {
         return;
       }
 
-      this.showToast('Payment successful', 'success');
+      // this.showToast('Payment successful', 'success');
+      this.$parent.$parent.showModal1()
     },
     selectCardType(event, type) {
       this.cardType = type;
