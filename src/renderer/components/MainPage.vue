@@ -10,83 +10,32 @@
       insertToonie: ['ctrl', '6'],
       returnCoins: ['ctrl', '7'] }" 
     @shortkey="keyboardShortcut">
-    <main>
-      <div>
-        <span class="title">
-          Welcome to the Parking Meter!
-        </span>
-      </div>
-      </main>
-      <button v-on:click="toggle_ampm"><div v-if="ampm == true">24-Hour Clock</div><div v-if="ampm == false">12-Hour Clock</div></button>
-      <br>
-      Increment the Minutes by interval of 30 mins
-      <div class="min-change">
-        <button v-on:click="add_time(30)">+</button>
-        <button v-on:click="remove_time(30)" :disabled="futureMin <=30">-</button>
-       </div>
-       Increment hour by interval of 1 hour
-        <div class="hour-change">
-        <button v-on:click="add_time(60)">+</button>
-        <button v-on:click="remove_time(60)" :disabled="futureMin <=60">-</button>
-       </div>
-      
-      <br>
-      Time right now 
-       <br>
-      <span>{{date[0]}} </span>&nbsp;
-      <span> {{ date[1] }} </span>&nbsp;
-      <span>{{date[2]}}</span> 
-      <span><sup> {{date[3]}} </sup></span>&nbsp; 
-      <span>{{date[4]}}</span> 
-      {{timeFromNow}}
-      <br>
-      Time until :  
-      <br>
-      <span>{{todate[0]}} </span>&nbsp;
-      <span> {{ todate[1] }} </span>&nbsp;
-      <span>{{todate[2]}}</span> 
-      <span><sup> {{todate[3]}} </sup></span>&nbsp; 
-      <span>{{todate[4]}}</span> 
-      
-      {{timeLater}}
-      <br/>
-
-      Total time
-      {{formattedMins}}
-      <br>
-      
-    <div>
-    Total amount is :  ${{amountDisplay}}
-    </br></br>
-    Current balance is : ${{balanceDisplay}}
-    <cash></cash>
-    </div>
-  <!-- <router-link :to="{ name: 'print'}">User</router-link> -->
-  <!-- <modal name="payment" height="80%" width="95%"> -->
-
-    <payments v-bind:time="amount" v-bind:from="timeFromNow" v-bind:to="timeLater" v-bind:length="formattedMins" 
-    v-bind:fromDate="date" v-bind:toDate="todate"
-    ></payments>
-    <!-- <button v-on:click="close"> Cancel </button>  -->
-    <button v-on:click="reset"> Pay Now </button>
-  <!-- </modal> -->
-  <!-- <button v-on:click="show">Pay Now</button>
-   <button v-on:click="reset">Clear</button> -->
-
-   
+    <b-card no-body>
+      <b-tabs pills card>
+        <b-tab title="Buy A Ticket" active>
+          <create-ticket :value="tickets"></create-ticket>
+        </b-tab>
+        <b-tab title="Refund Ticket">
+          <edit-ticket v-bind:tickets="tickets"></edit-ticket>
+        </b-tab>
+      </b-tabs>
+    </b-card>
   </div>
 </template>
 
 <script>
-import Payments from './MainPage/Payments'
-import Cash from './MainPage/Cash'
+import Payments from './MainPage/PaymentOptions'
+import Cash from './MainPage/Payments/Cash'
+import CreateTicket from './CreateTicket'
+import EditTicket from './EditTicket'
 // import moment from 'moment'
 import { format } from 'url';
   export default {
     name: 'landing-page',
-    components: { Payments, Cash },
+    components: { Payments, Cash, EditTicket, CreateTicket },
     data () {
       return {
+        tickets: [],
         timeFromNow: null,
         timeLater : null,
         date : [],
@@ -112,6 +61,9 @@ import { format } from 'url';
     clearInterval(this.getTimeFromNow)
   },
   methods: {
+    onChildUpdate(newValue) {
+      this.tickets = newValue
+    },
     formatPrice(num) {
       return num.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
     },
@@ -233,87 +185,6 @@ import { format } from 'url';
   }
 }
 </script>
-
 <style>
-  /* @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro'); */
 
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-
-  body { font-family: 'Source Sans Pro', sans-serif; }
-
-  #wrapper {
-    background:
-      radial-gradient(
-        ellipse at top left,
-        rgba(255, 255, 255, 1) 40%,
-        rgba(229, 229, 229, .9) 100%
-      );
-    height: 100vh;
-    padding: 60px 80px;
-    width: 100vw;
-  }
-
-  #logo {
-    height: auto;
-    margin-bottom: 20px;
-    width: 420px;
-  }
-
-  main {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  main > div { flex-basis: 50%; }
-
-  .left-side {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .welcome {
-    color: #555;
-    font-size: 23px;
-    margin-bottom: 10px;
-  }
-
-  .title {
-    color: #2c3e50;
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 6px;
-  }
-
-  .title.alt {
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-
-  .doc p {
-    color: black;
-    margin-bottom: 10px;
-  }
-
-  .doc button {
-    font-size: .8em;
-    cursor: pointer;
-    outline: none;
-    padding: 0.75em 2em;
-    border-radius: 2em;
-    display: inline-block;
-    color: #fff;
-    background-color: #4fc08d;
-    transition: all 0.15s ease;
-    box-sizing: border-box;
-    border: 1px solid #4fc08d;
-  }
-
-  .doc button.alt {
-    color: #42b983;
-    background-color: transparent;
-  }
 </style>
