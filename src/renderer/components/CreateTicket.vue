@@ -101,10 +101,7 @@
     <h4> Total amount is :  ${{amount}}   </h4>
     </div>
     <br>
-    <PaymentOptions v-bind:time="amount" v-bind:from="timeFromNow" 
-    v-bind:to="timeLater" v-bind:length="formatedMins" 
-    v-bind:fromDate="date" v-bind:toDate="todate"
-    v-bind:id="id"
+    <PaymentOptions v-bind:tickets="currentTic"
     ></PaymentOptions>
     
     <!-- <button v-on:click="reset"> Pay Now </button> -->
@@ -135,7 +132,16 @@ import { format } from 'url';
       hours : '',
       todate : [],
       rate : 0.25,
-      id : 0
+      id : 0,
+      currentTic : {
+            id :  '',
+            CurrentTime : '',
+            CurrentDate : ['','','','',''],
+            ExpiryTime : '',
+            ExpiryDate : ['','','','',''],
+            Duration : '',
+            time : ''
+        }
     }
   },
   created () {
@@ -243,12 +249,15 @@ import { format } from 'url';
         let tick = {
             id :  this.id + 1,
             CurrentTime : this.timeFromNow,
-            CurrentDate : this.Date,
+            CurrentDate : this.date[0] + ' ' + this.date[1] + ' ' + this.date[2] +this.date[3]+ ' ' + this.date[4] ,
             ExpiryTime : this.timeLater,
-            ExpiryDate : this.todate,
+            ExpiryDate : this.todate[0] + ' '+ this.todate[1]+ ' ' + this.todate[2]  + this.todate[3] + ' ' + this.todate[4],
             Duration : this.futureMin,
-            EpochDate: epoch
+            EpochDate: epoch,
+            time : this.formatedMins
         }
+        this.currentTic = tick
+
         this.$emit('update', this.value.push(tick) )
         this.futureMin = 15;
         this.id++;
