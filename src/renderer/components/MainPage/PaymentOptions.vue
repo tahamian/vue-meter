@@ -10,7 +10,8 @@
       <b-collapse ref="accord1" id="accordion1" accordion="my-accordion" role="tabpanel">
         <b-card-body>
           <p class="card-text">
-            <cash> </cash>
+            <!-- <cash> </cash> -->
+            <router-link :to="{ name: 'cash'}">Im a gordo</router-link>
           </p>
           <p class="card-text">
             Im a flop
@@ -36,13 +37,11 @@
                 <div style="border: 2px solid rgb(161, 161, 161); background: white; padding: 10px 20px; border-radius: 25px;">
                   <img src="../../assets/avatar.png" alt="">
                 <br> <b> Ticket ID: </b>{{this.tickets.id}}
-                <br> <b>Parking time:</b> {{this.tickets.time}} 
-                <!-- <br> <b> Amount Paid: </b> BTC {{bitcoins}} -->
+                <br> <b>Parking time:</b> {{this.tickets.time}}
                 <br> <b> Amount:  $</b> {{this.tickets.amo}}
                 <br> <b> Time of Purchase: </b>  {{this.tickets.CurrentDate}} <b>@</b>{{this.tickets.CurrentTime}}
                 <br> <b> Time Until Expiry: </b> {{this.tickets.ExpiryDate}} <b>@</b> {{this.tickets.ExpiryTime}}
                 
-
                 <br>
                 <br>
                 <img height="50px" width="150px" src="../../assets/barcode.png" alt=""></div>

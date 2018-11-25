@@ -1,6 +1,7 @@
 <template>
 <div >
    {{image}}
+   Im a bitch!
   </div>
 </template>
 
