@@ -1,15 +1,12 @@
 <template>
   <div id="wrapper" align="center">
     
-    <main>
-      
-      </main>
      <div class ="d-flex justify-content-center">
         <h1>Welcome to the Parking Meter!</h1>
       </div>
 
       <br>
-      <br>
+      
      <!--
       <div>
       <br>
@@ -240,17 +237,21 @@ import { format } from 'url';
       this.amount = (this.rate * this.futureMin).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
     },
     reset (){
-      this.id ++;
+       var cur_date_vue = new Date();
+       var epoch = cur_date_vue.getTime() + this.futureMin*60000;
+       
         let tick = {
             id :  this.id + 1,
             CurrentTime : this.timeFromNow,
             CurrentDate : this.Date,
             ExpiryTime : this.timeLater,
             ExpiryDate : this.todate,
-            Duration : this.futureMin
+            Duration : this.futureMin,
+            EpochDate: epoch
         }
         this.$emit('update', this.value.push(tick) )
         this.futureMin = 15;
+        this.id++;
     }
   },
   mounted (){

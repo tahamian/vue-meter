@@ -61,10 +61,13 @@
 
                 <div style="border: 2px solid rgb(161, 161, 161); background: white; padding: 10px 40px; border-radius: 25px;">
                   <img src="../../assets/avatar.png" alt="">
-                <br> <b>Parking time:</b> {{length_t}} 
+                <br> <b> Ticket ID: </b>{{id}}
+                <br> <b>Parking time:</b> {{length}} 
                 <br> <b> Amount Paid: </b> BTC {{bitcoins}}
                 <br> <b> Time of Purchase: </b> {{from_t}}  {{fromDate_t[0]}} {{fromDate_t[1]}} {{fromDate_t[2]}}<sup>{{fromDate_t[3]}}</sup>
                 <br> <b> Time Until Expiry: </b> {{to_t}} {{toDate_t[0]}} {{toDate_t[1]}} {{toDate_t[2]}}<sup>{{toDate_t[3]}}</sup>
+                
+
                 <br><img height="50px" width="150px" src="../../assets/barcode.png" alt=""></div>
                 </div>
                 </div>
