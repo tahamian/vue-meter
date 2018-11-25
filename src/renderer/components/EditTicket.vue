@@ -8,16 +8,16 @@
 
 <div class ="d-flex justify-content-center">
 <div class=inputSpace>
- <form class="form-inline">
+ <b-form class="form-inline">
   <div class="form-group mb-2">
     <label for="ticketId" class="sr-only">Enter Ticket ID</label>
     <input type="text"   readonly class="form-control-plaintext" id="staticEmail2" value="Enter Ticket ID  : ">
   </div>
-  <div class="form-group mx-sm-3 mb-2">
-    <input v-model="id" type="text" class="form-control" id="inputPassword2" placeholder="Ticket ID">
+  <div class="form-group mx-sm-3 mb-0">
+    <input v-model="id" type="text" class="form-control" id="TicketID" placeholder="Ticket ID">
   </div>
-  <button v-on:click="updateTitle(tickets)" class="btn btn-primary mb-2">Confirm identity</button>
-</form>
+  <b-button v-on:click="updateTitle(tickets)" variant="primary">Confirm identity</b-button>
+</b-form>
 </div>
 </div>
 <div class ="d-flex justify-content-center">
@@ -64,9 +64,7 @@ export default {
       id : 0
     }
   },
-   created () {
   
-  },
   methods: {
 
      
