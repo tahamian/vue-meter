@@ -101,11 +101,15 @@
     <h4> Total amount is :  ${{amount}}   </h4>
     </div>
     <br>
-    <PaymentOptions v-bind:tickets="currentTic"
-    ></PaymentOptions>
+    <!-- <PaymentOptions v-bind:tickets="currentTic"
+    ></PaymentOptions> -->
     
     <!-- <button v-on:click="reset"> Pay Now </button> -->
-
+   <!-- <router-link :to="{ name: 'cash', params : currentTic}"> -->
+     <button v-on:click="reset">
+       Print Ticket
+     </button>
+   <!-- </router-link> -->
    
   </div>
 </template>
@@ -263,6 +267,9 @@ import { format } from 'url';
         this.$emit('update', this.value.push(tick) )
         this.futureMin = 15;
         this.id++;
+        // console.log(this.$router)
+        this.$router.push({name : 'cash', params : tick})
+
     }
   },
   mounted (){

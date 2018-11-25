@@ -13,7 +13,7 @@ export default new Router({
     {
       path : '/cash',
       name : 'cash',
-      component : require('@/components/MainPage/Payments/Cash').default
+      component : require('@/components/MainPage/PaymentOptions').default
     },
     {
       path: '*',
