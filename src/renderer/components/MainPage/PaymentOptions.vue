@@ -41,7 +41,6 @@
                 <br> <b> Amount:  $</b> {{$route.params.amo}}
                 <br> <b> Time of Purchase: </b>  {{$route.params.CurrentDate}} <b>@</b>{{$route.params.CurrentTime}}
                 <br> <b> Time Until Expiry: </b> {{$route.params.ExpiryDate}} <b>@</b> {{$route.params.ExpiryTime}}
-                
                 <br>
                 <br>
                 <img height="50px" width="150px" src="../../assets/barcode.png" alt=""></div>
@@ -99,6 +98,7 @@
       </b-collapse>
     </b-card>
     {{$route.params}}
+    <b-btn class="mt-3" variant="outline-danger" block @click="goback">Cancel</b-btn>
   </div>
 </template>
 
@@ -143,6 +143,10 @@ import CreditCard from './Payments/CreditCard'
       this.$refs.myModalRef1.hide()
       this.$router.push({name : 'Main-Page'})
     },
+    goback (){
+      this.$router.push({name : 'Main-Page'})
+
+    }
   }
 }
 </script>
