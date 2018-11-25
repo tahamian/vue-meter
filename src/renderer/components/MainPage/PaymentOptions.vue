@@ -1,20 +1,13 @@
 <template>
   <div>
     <div class="items">
-      <!-- {{num_time}}
-      {{from_t}}
-      {{to_t}}
-      {{fromDate_t}}
-      {{toDate_t}}
-      {{length_t}}
-      {{bitcoins}} -->
       <br>
     </div>
     <b-card no-body class="mb-1">
       <b-card-header header-tag="header" class="p-1" role="tab">
         <b-btn block href="#" v-b-toggle.accordion1 variant="info">Cash</b-btn>
       </b-card-header>
-      <b-collapse ref="accord1" id="accordion1" visible accordion="my-accordion" role="tabpanel">
+      <b-collapse ref="accord1" id="accordion1" accordion="my-accordion" role="tabpanel">
         <b-card-body>
           <p class="card-text">
             <cash> </cash>
@@ -36,10 +29,9 @@
               <div class="d-block text-center">
                 <h3>Thank you!</h3>
                 <div>
-               
-                <!-- <h3 style="margin: 0px; padding: 12px 12px 10px; color: rgba(0, 0, 0, 0.87); font-size: 22px; line-height: 32px; font-weight: 400; border-bottom: none; text-align: center;">Ticket Printed!</h3> -->
 
-                <div style="font-size: 16px; color: rgba(0, 0, 0, 0.6); padding: 0px 10px 12px; box-sizing: border-box; overflow-y: hidden; position: relative; margin: auto; text-align: center; max-height: 626px;">
+                <div style="font-size: 16px; color: rgba(0, 0, 0, 0.6); padding: 0px 10px 12px; box-sizing: border-box; 
+                overflow-y: hidden; position: relative; margin: auto; text-align: center; max-height: 626px;">
 
                 <div style="border: 2px solid rgb(161, 161, 161); background: white; padding: 10px 20px; border-radius: 25px;">
                   <img src="../../assets/avatar.png" alt="">
