@@ -11,12 +11,15 @@
  <b-form class="form-inline">
   <div class="form-group mb-2">
     <label for="ticketId" class="sr-only">Enter Ticket ID</label>
-    <input type="text"   readonly class="form-control-plaintext" id="staticEmail2" value="Enter Ticket ID  : ">
+    <input type="text"   readonly class="form-control-plaintext" 
+    id="staticEmail2" value="Enter Ticket ID :">
   </div>
   <div class="form-group mx-sm-3 mb-0">
-    <input v-model="id" type="text" class="form-control" id="TicketID" placeholder="Ticket ID">
+    <input v-model="id" type="text" class="form-control" id="TicketID" 
+    placeholder="Ticket ID">
   </div>
-  <b-button v-on:click="updateTitle(tickets)" variant="primary">Confirm identity</b-button>
+  <b-button v-on:click="updateTitle(tickets)" variant="primary">
+    Return Ticket</b-button>
 </b-form>
 </div>
 </div>
@@ -39,37 +42,35 @@
 
 
 <script>
+import Vue from 'vue'
+import Toasted from 'vue-toasted'
+
+Vue.use(Toasted)
+
 export default {
   name: "edit-ticket",
   props: ["tickets"],
   data () {
     return {
-      ticketIdInput: null,
-      timeFromNow: null,
-      timeLater : null,
-      ticketer: null,
-      date : [],
       msg: null,
-      futureMin : 15,
-      amount : '',
-      ampm : true,
-      days : ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
-      months : ['January','February','March','April','May','June','July','August','September','October','November','December'],
-      nums : ['st','nd','rd','th'],
-      formatedMins : '',
-      mins : '',
-      hours : '',
-      todate : [],
-      rate : 0.25,
       id : null
     }
   },
   destroyed () {
-   console.log("hello")
+  //  console.log("hello")
   },
   methods: {
 
+      showToast(msg, type) {
+      let options = {
+        duration: 3000,
+        singleton: true
+      }
 
+      if (type) options.type = type;
+
+      Vue.toasted.show(msg, options);
+    },
       getCurrentTime(expireTime){
       
         var input = new Date(expireTime);
@@ -87,19 +88,24 @@ export default {
 
 
       updateTitle: function(tickets){
-        var check = false
-        
-        
-        for (let item in tickets){
-           if(tickets[item].id==this.id){
-               check = true
-               this.msg = "$ " + this.getCurrentTime(tickets[item].EpochDate)
-           }
-        }
-        if(check ==false){
-            this.msg = "Error Could Not Find Ticket "
-        }
 
+        let find = tickets.filter( (x) =>{
+          return x.id === Number(this.id)
+        })
+        console.log(find)
+        if (find.length === 0){
+            this.showToast('Please enter Valid ID','error')
+        }
+        else{
+          console.log(typeof find[0].EpochDate)
+          this.msg = "$ " + this.getCurrentTime(find[0].EpochDate)
+          this.showToast('Please Collect your change','success')
+          let index = tickets.indexOf(find[0])
+          console.log(index)
+          if(index > -1 ){
+            console.log("remove element")
+          }
+        }
       }
     }
 };
