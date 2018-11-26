@@ -2,7 +2,7 @@
   <div id="wrapper1">
     <div>
 
-   <b-card no-body>
+   <b-card no-body style="height : 100vh; width : 100vh;" >
       <b-tabs pills card>
         <b-tab title="Buy A Ticket" active>
           
@@ -18,7 +18,6 @@
 
 
     </div>
- 
 
 
 
@@ -63,10 +62,15 @@ import { format } from 'url';
         rgba(255, 255, 255, 1) 40%,
         rgba(229, 229, 229, .9) 100%
       );
-  max-width: 960px; /* 20px smaller, to fit the paddings on the sides */
-
-  padding-right: 10px;
-  padding-left: 10px;
+    
+  
+  height: 100vh;
+  width: 100vh;
 
   }
+  html {
+    height : 100vh;
+    width : 100vh;
+  }
+
 </style>
