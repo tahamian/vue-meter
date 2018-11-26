@@ -11,8 +11,7 @@ export default{
     props : ["amount"],
     data (){
         return{
-            image : 'just do it',
-            amount1 : this.amount
+            image : 'just do it'
         }
         
     },

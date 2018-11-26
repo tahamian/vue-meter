@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="items">
+    <div>
       <br>
     </div>
     <b-card no-body class="mb-1">
@@ -70,9 +70,8 @@
                 <h3>Thank you!</h3>
                 <div>
                
-                <!-- <h3 style="margin: 0px; padding: 12px 12px 10px; color: rgba(0, 0, 0, 0.87); font-size: 22px; line-height: 32px; font-weight: 400; border-bottom: none; text-align: center;">Ticket Printed!</h3> -->
-
-                <div style="font-size: 16px; color: rgba(0, 0, 0, 0.6); padding: 0px 10px 12px; box-sizing: border-box; overflow-y: hidden; position: relative; margin: auto; text-align: center; max-height: 626px;">
+                <div style="font-size: 16px; color: rgba(0, 0, 0, 0.6); padding: 0px 10px 12px; box-sizing: border-box; 
+                overflow-y: hidden; position: relative; margin: auto; text-align: center; max-height: 626px;">
 
                 <div style="border: 2px solid rgb(161, 161, 161); background: white; padding: 10px 20px; border-radius: 25px;">
                   <img src="../../assets/avatar.png" alt="">
@@ -116,36 +115,22 @@ import CreditCard from './Payments/CreditCard'
       }
     },
     methods: {
-    nextClicked(currentPage) {
-      console.log('next clicked', currentPage)
-      return true; 
-    },
-    backClicked(currentPage) {
-      console.log('back clicked', currentPage);
-      return true;
-    },
     showModal () {
-      // console.log(this.tickets)
       this.$refs.myModalRef.show()
-      // this.$parent.reset()
-      
     },
     hideModal () {
       this.$refs.myModalRef.hide()
-      this.$router.push({name : 'Main-Page'})
+      this.$router.push({name : 'Main-Page', params : {payment : 1 , info: this.$route.params}})
     },
     showModal1 (){
-      // console.log(this.tickets)
       this.$refs.myModalRef1.show()
-      // this.$parent.reset()
     },
     hideModal1 () {
       this.$refs.myModalRef1.hide()
-      this.$router.push({name : 'Main-Page'})
+      this.$router.push({name : 'Main-Page', params : {payment : 1 , info: this.$route.params}})
     },
     goback (){
       this.$router.push({name : 'Main-Page'})
-
     }
   }
 }
