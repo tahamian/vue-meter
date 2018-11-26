@@ -58,9 +58,9 @@
             <b-button @click="showModal">
               Pay to Wallet
             </b-button>
-            <b-modal ref="myModalRef" hide-footer title="Ticket Print" size="lg">
+            <b-modal ref="myModalRef" hide-footer size="lg" hide-header-close>
               <div class="d-block text-center">
-                <h3>Thank you!</h3>
+                <h3>Printed Receipt</h3>
                 <div>
                   <div style="font-size: 16px; color: rgba(0, 0, 0, 0.6); padding: 0px 10px 12px; box-sizing: border-box; overflow-y: hidden; position: relative; margin: auto; text-align: center; max-height: 626px;">
                     <div style="border: 2px solid rgb(161, 161, 161); background: white; padding: 10px 20px; border-radius: 25px;">
@@ -93,41 +93,31 @@ import Bitcoin from "./Payments/Bitcoin";
 import Cash from "./Payments/Cash";
 import CreditCard from "./Payments/CreditCard";
 
-export default {
-  props: ["tickets"],
-  components: { Bitcoin, Cash, CreditCard },
-  data() {
-    return {
-      bitcoins: parseFloat(
-        parseFloat(3).toFixed(9) / parseFloat(5670.81).toFixed(9)
-      ).toFixed(9)
-    };
-  },
-  methods: {
-    nextClicked(currentPage) {
-      console.log("next clicked", currentPage);
-      return true;
+  export default {
+    props : ['tickets'],
+    components: { Bitcoin, Cash, CreditCard },
+    data () {
+      return {
+        bitcoins : parseFloat(parseFloat(3).toFixed(9) / parseFloat(5670.81).toFixed(9)).toFixed(9)
+      }
     },
-    backClicked(currentPage) {
-      console.log("back clicked", currentPage);
-      return true;
+    methods: {
+    showModal () {
+      this.$refs.myModalRef.show()
     },
-    showModal() {
-      this.$refs.myModalRef.show();
+    hideModal () {
+      this.$refs.myModalRef.hide()
+      this.$router.push({name : 'Main-Page', params : {payment : 1 , info: this.$route.params}})
     },
-    hideModal() {
-      this.$refs.myModalRef.hide();
-      this.$router.push({ name: "Main-Page" });
+    showModal1 (){
+      this.$refs.myModalRef1.show()
     },
-    showModal1() {
-      this.$refs.myModalRef1.show();
+    hideModal1 () {
+      this.$refs.myModalRef1.hide()
+      this.$router.push({name : 'Main-Page', params : {payment : 1 , info: this.$route.params}})
     },
-    hideModal1() {
-      this.$refs.myModalRef1.hide();
-      this.$router.push({ name: "Main-Page" });
-    },
-    goback() {
-      this.$router.push({ name: "Main-Page" });
+    goback (){
+      this.$router.push({name : 'Main-Page'})
     }
   }
 };
