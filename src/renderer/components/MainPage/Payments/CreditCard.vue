@@ -45,11 +45,6 @@
           </div>
           <div style="margin-left: 20px;">
             <select class="form-control margin-15" name="expiry-year" v-model="cardExpiryYear">
-              <option value="13">2013</option>
-              <option value="14">2014</option>
-              <option value="15">2015</option>
-              <option value="16">2016</option>
-              <option value="17">2017</option>
               <option value="18">2018</option>
               <option value="19">2019</option>
               <option value="20">2020</option>
