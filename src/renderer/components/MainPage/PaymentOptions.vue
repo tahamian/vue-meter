@@ -3,6 +3,8 @@
     <div class="items">
       <br>
     </div>
+    <h3>Select Payment Option:</h3>
+    <br>
     <b-card no-body class="mb-1">
       <b-card-header header-tag="header" class="p-1" role="tab">
         <b-btn block href="#" v-b-toggle.accordion1 variant="info">Cash</b-btn>
@@ -84,6 +86,7 @@
         </b-card-body>
       </b-collapse>
     </b-card>
+    <br>
     <b-btn class="mt-3" variant="outline-danger" block @click="goback">Cancel</b-btn>
   </div>
 </template>

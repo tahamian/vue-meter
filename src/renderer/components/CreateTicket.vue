@@ -31,13 +31,14 @@
     </div>
 
     <div class = "d-flex justify-content-center"> 
+      
       <h5>{{todate[0]}}, {{ todate[1] }}, {{todate[2]}}{{todate[3]}}, <span>{{todate[4]}}</span> {{timeLater}}  </h5>&nbsp;
     </div>
-
+<br>
     <div>
       <h4> Total amount is :  ${{amount}}   </h4>
     </div>
-
+<br>
      <b-button variant="primary" v-on:click="sendPayment">
        Print Ticket
      </b-button>

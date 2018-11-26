@@ -16,7 +16,7 @@
    <b-card no-body>
       <b-tabs pills card>
         <b-tab title="Buy A Ticket" active>
-          {{this.$parent.tickets}}
+          
           <create-ticket :value="this.$parent.tickets">
           </create-ticket>
         </b-tab>
