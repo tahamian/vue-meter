@@ -18,7 +18,7 @@
     <input v-model="id" type="text" class="form-control" id="TicketID" 
     placeholder="Ticket ID">
   </div>
-  <b-button v-on:click="updateTitle(tickets)" variant="primary">
+  <b-button v-on:click="updateTitle(tickets)" variant="primary" :disabled="id == null || id == ''">
     Return Ticket</b-button>
 </b-form>
 </div>
