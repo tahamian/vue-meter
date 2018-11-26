@@ -13,10 +13,13 @@
     <b-card no-body>
       <b-tabs pills card>
         <b-tab title="Buy A Ticket" active>
-          <create-ticket :value="tickets"></create-ticket>
+          {{this.$parent.tickets}}
+          <create-ticket :value="this.$parent.tickets">
+          </create-ticket>
         </b-tab>
         <b-tab title="Refund Ticket">
-          <edit-ticket v-bind:tickets="tickets"></edit-ticket>
+      
+          <edit-ticket v-bind:tickets="this.$parent.tickets"></edit-ticket>
         </b-tab>
       </b-tabs>
     </b-card>

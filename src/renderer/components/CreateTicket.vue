@@ -1,118 +1,49 @@
 <template>
   <div id="wrapper" align="center">
-    
-     <div class ="d-flex justify-content-center">
-        <h1>Welcome to the Parking Meter!</h1>
-      </div>
 
-      <br>
+    <div class ="d-flex justify-content-center">
+      <h1>Welcome to the Parking Meter!</h1>
+    </div>
       
-     <!--
-      <div>
-      <br>
-      Current Time:
-       <br>
-      <span>{{date[0]}} </span>&nbsp;
-      <span> {{ date[1] }} </span>&nbsp;
-      <span>{{date[2]}}</span> 
-      <span><sup> {{date[3]}} </sup></span>&nbsp; 
-      <span>{{date[4]}}</span> 
-      {{timeFromNow}}
-      <br>
-      </div>
-      -->
-      <!--
-      <div class="divider"> 
-        <span>24-Hour </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <toggle-button id = "toggleButton" @change="toggle_ampm"/>   
-      </div>
-      <br>
-      -->
-      
-      <!--
-      <div class="changeTime">     
-          Select Amount of Time:
-          <button display = "inline-block" v-on:click="add_time(60)">+</button>
-          <span>{{hours}}</span>
-          <button v-on:click="remove_time(60)" :disabled="futureMin <=60">-</button>
-          <span>hours</span>&nbsp;
-          <button display = "inline-block" v-on:click="add_time(15)">+</button>
-          <span>{{mins}}</span>
-          <button v-on:click="remove_time(15)" :disabled="futureMin <=15">-</button>
-          <span>minutes</span>
-
-           <span> {{ todate[1] }} </span>&nbsp;
-      <span>{{todate[2]}}</span> 
-
-      </div>
-      -->
-
-      <div>
+    <div>
       <h4>Select Amount Of Time:</h4>
-      </div>
+    </div>
 
-      <div class="box2">
-        
-        <b-button class="btn btn-success btn-number"  v-on:click="add_time(60)" >+</b-button>
-       
-        <p class = "textHour">{{hours}}&nbsp;&nbsp;hours </p> 
-       
+    <div class="box2">    
+      <b-button class="btn btn-success btn-number"  v-on:click="add_time(60)" >+</b-button> 
+      <p class = "textHour">{{hours}}&nbsp;&nbsp;hours </p>  
       <b-button class="btn btn-danger btn-number" style="width:38px" v-on:click="remove_time(60)" :disabled="futureMin <=60">-</b-button>
-      </div>
+    </div>
 
-
-
-      <div class="box2">
-        <div>
+    <div class="box2">
+      <div>
         <b-button class="btn btn-success btn-number" v-on:click="add_time(15)" >+</b-button>
         <p class = "textHour">{{mins}}&nbsp;&nbsp;minutes</p> 
         <b-button class="btn btn-danger btn-number" style="width:38px" v-on:click="remove_time(15)" :disabled="futureMin <=15">-</b-button>
-        </div>
       </div>
-     
-
-  
-        
-     <div class = "d-flex justify-content-center"> 
-      <h2>Your parking will expire at : </h2>
-     </div>
-     <br>
-
-     <div class = "d-flex justify-content-center"> 
-       <h5>{{todate[0]}}, {{ todate[1] }}, {{todate[2]}}{{todate[3]}}, <span>{{todate[4]}}</span> {{timeLater}}  </h5>&nbsp;
-     </div>
-    
-        
-      <br>
-      <!--
-      <span>{{todate[0]}}, {{ todate[1] }}, {{todate[2]}} </span>&nbsp;
-     
-      <span><sup> {{todate[3]}} </sup></span>&nbsp; 
-      <span>{{todate[4]}}</span> 
-      
-      {{timeLater}}
-      <br/>
-
-      Total time
-      {{formatedMins}}
-      <br>
-      -->
-    <div>
-    <h4> Total amount is :  ${{amount}}   </h4>
     </div>
-    <br>
-    <PaymentOptions v-bind:tickets="currentTic"
-    ></PaymentOptions>
-    
-    <!-- <button v-on:click="reset"> Pay Now </button> -->
+        
+    <div class = "d-flex justify-content-center"> 
+      <h2>Your parking will expire at : </h2>
+    </div>
 
+    <div class = "d-flex justify-content-center"> 
+      <h5>{{todate[0]}}, {{ todate[1] }}, {{todate[2]}}{{todate[3]}}, <span>{{todate[4]}}</span> {{timeLater}}  </h5>&nbsp;
+    </div>
+
+    <div>
+      <h4> Total amount is :  ${{amount}}   </h4>
+    </div>
+
+     <button v-on:click="sendPayment">
+       Print Ticket
+     </button>
    
   </div>
 </template>
 
 <script>
   import PaymentOptions from './MainPage/PaymentOptions'
-import { format } from 'url';
   export default {
     name: 'create-ticket',
     components: { PaymentOptions },
@@ -133,26 +64,54 @@ import { format } from 'url';
       todate : [],
       rate : 0.25,
       id : 0,
-      currentTic : {
-            id :  '',
-            CurrentTime : '',
-            CurrentDate : ['','','','',''],
-            ExpiryTime : '',
-            ExpiryDate : ['','','','',''],
-            Duration : '',
-            time : '',
-            amo : 3.75
-        }
+      paymentSucess : 0,
+      currentParking : []
     }
+  },
+  watch : {
+    '$route' : 'checkPayment'
   },
   created () {
     this.getTimeFromNow()
     setInterval(this.getTimeFromNow, 500)
+    this.checkPayment()
   },
   destroyed () {
     clearInterval(this.getTimeFromNow)
   },
   methods: {
+    checkPayment (){
+      // console.log('it happened')
+      if(this.$route.params.payment){
+        this.reset()
+      }
+    },
+    
+    sendPayment (){
+      var cur_date_vue = new Date();
+       var epoch = cur_date_vue.getTime() + this.futureMin*60000;
+      
+        let tick = {
+            id :  this.value.length + 1 ,
+            CurrentTime : this.timeFromNow,
+            CurrentDate : this.date[0] + ' ' + this.date[1] + ' ' + this.date[2] +this.date[3]+ ' ' + this.date[4] ,
+            ExpiryTime : this.timeLater,
+            ExpiryDate : this.todate[0] + ' '+ this.todate[1]+ ' ' + this.todate[2]  + this.todate[3] + ' ' + this.todate[4],
+            Duration : this.futureMin,
+            EpochDate: epoch,
+            time : this.formatedMins,
+            amo : this.amount
+        }
+      // console.log(this.value)
+      // console.log(tick)
+      this.$emit('update', this.value.push(tick))   
+      this.currentParking = [tick]
+      // let x = this.$parent.tickets.push(tick)
+      // this.$emit('update', this.value.push(tick))
+      this.$router.push({name : 'cash', params : tick})
+
+
+    },
     getTimeFromNow () {
       this.timeFromNow = this.formatTime(new Date())
       this.date = this.formatDate(new Date())
@@ -244,25 +203,15 @@ import { format } from 'url';
       this.amount = (this.rate * this.futureMin).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
     },
     reset (){
-       var cur_date_vue = new Date();
-       var epoch = cur_date_vue.getTime() + this.futureMin*60000;
-       
-        let tick = {
-            id :  this.id + 1,
-            CurrentTime : this.timeFromNow,
-            CurrentDate : this.date[0] + ' ' + this.date[1] + ' ' + this.date[2] +this.date[3]+ ' ' + this.date[4] ,
-            ExpiryTime : this.timeLater,
-            ExpiryDate : this.todate[0] + ' '+ this.todate[1]+ ' ' + this.todate[2]  + this.todate[3] + ' ' + this.todate[4],
-            Duration : this.futureMin,
-            EpochDate: epoch,
-            time : this.formatedMins,
-            amo : this.amount
-        }
-        this.currentTic = tick
-
-        this.$emit('update', this.value.push(tick) )
         this.futureMin = 15;
-        this.id++;
+        // this.id++;
+        // console.log(adding)
+        // console.log(this.$parent)
+        // console.log("its resetting")
+      // this.$emit('update', this.value.push(adding))        
+        // this.$parent.onChildUpdate(adding)
+        // this.currentParking = [];
+
     }
   },
   mounted (){

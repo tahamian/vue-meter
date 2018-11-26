@@ -11,6 +11,11 @@ export default new Router({
       component: require('@/components/MainPage').default
     },
     {
+      path : '/cash',
+      name : 'cash',
+      component : require('@/components/MainPage/PaymentOptions').default
+    },
+    {
       path: '*',
       redirect: '/'
     },
