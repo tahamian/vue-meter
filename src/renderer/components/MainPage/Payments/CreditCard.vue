@@ -41,7 +41,7 @@
       <div class="form-group" style="display: flex; flexDirection: column; align-items: center;">
         <label class="control-label" for="expiry-month"><b>Expiration Date</b></label>
         <div class="row">
-          <div>
+          <div style="margin-right:15px">
             <select class="form-control margin-15" name="expiry-month" id="expiry-month" v-model="cardExpiryMonth">
               <option>Month</option>
               <option value="01">Jan (01)</option>
@@ -58,7 +58,10 @@
               <option value="12">Dec (12)</option>
             </select>
           </div>
-          <div style="margin-left: 20px;">
+          <div >
+            <h3 style="padding-right: 10px; padding-top: 14px; padding-left: 20px;" >/</h3>
+          </div>
+          <div style="padding-right: 16px; margin-right:13px">
             <select class="form-control margin-15" name="expiry-year" v-model="cardExpiryYear">
               <option value="18">2018</option>
               <option value="19">2019</option>
