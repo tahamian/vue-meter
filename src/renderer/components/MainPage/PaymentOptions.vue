@@ -22,9 +22,9 @@
       <b-collapse id="accordion2" accordion="my-accordion" role="tabpanel">
         <b-card-body>
           <CreditCard></CreditCard>
-          <b-modal ref="myModalRef1" hide-footer title="Ticket Print" size="lg">
+          <b-modal ref="myModalRef1" hide-footer hide-header-close size="lg">
             <div class="d-block text-center">
-              <h3>Thank you!</h3>
+             <h3>Printed Receipt</h3>
               <div>
                 <div style="font-size: 16px; color: rgba(0, 0, 0, 0.6); padding: 0px 10px 12px; box-sizing: border-box; 
                   overflow-y: hidden; position: relative; margin: auto; text-align: center; max-height: 626px;">

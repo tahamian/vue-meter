@@ -21,9 +21,9 @@
 	<button style="margin-top: 10px;" type="button" class="btn btn-success" @click="showModal" :disabled="!paymentReady()">Pay now</button>
 	</div>
 
-	<b-modal ref="myModalRef" hide-footer title="Ticket Print" size="lg">
+	<b-modal ref="myModalRef" hide-footer hide-header-close size= "lg">
 		<div class="d-block text-center">
-			<h3>Thank you!</h3>
+			<h3>Printed Receipt</h3>
 			<div>
 				<div style="font-size: 16px; color: rgba(0, 0, 0, 0.6); padding: 0px 10px 12px; box-sizing: border-box; 
 					overflow-y: hidden; position: relative; margin: auto; text-align: center; max-height: 626px;">
