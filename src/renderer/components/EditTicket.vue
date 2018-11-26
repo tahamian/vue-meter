@@ -24,8 +24,8 @@
 </b-form>
 </div>
 </div>
-
-<b-modal ref="myModalRef" no-close-on-backdrop no-close-on-esc hide-footer hide-header-close title="Please Collect Your change">
+    <b-modal ref="myModalRef" no-close-on-backdrop no-close-on-esc 
+    hide-footer hide-header-close title="Please Collect Your change">
       <div class="d-block text-center">
         <h3>Refund Sucessful</h3>
         <img src="../assets/checkmark.png">
@@ -33,24 +33,14 @@
             <br>
             <h3>Your Refund Is: </h3>
         </div>
-
       <div class ="d-flex justify-content-center">
       <h4>{{msg}}</h4>
       </div>
-  
       </div>
       <b-btn class="mt-3" variant="outline-danger" block @click="hideModal">Close Me</b-btn>
     </b-modal>
-
-
-   
- 
-  
   </div>
-
-  
 </template>
-
 
 <script>
 import Vue from 'vue'
@@ -66,9 +56,6 @@ export default {
       msg: null,
       id : null
     }
-  },
-  destroyed () {
-  //  console.log("hello")
   },
   methods: {
       isNumber: function(evt) {
@@ -91,27 +78,20 @@ export default {
       Vue.toasted.show(msg, options);
     },
       getCurrentTime(expireTime){
-      
         var input = new Date(expireTime);
-             
         var cur_date_vue = new Date();
         var time = cur_date_vue.getTime()
         if(Number((expireTime - time)*(1/60000) * 0.25).toFixed(2)<0){
             return 0;
         }
         return Number((expireTime - time)*(1/60000) * 0.25).toFixed(2);
-        
-        
-
       },
-
-
       updateTitle: function(tickets){
-
+        
         let find = tickets.filter( (x) =>{
           return x.id === Number(this.id)
         })
-        console.log(find)
+        // console.log(find)
         if (find.length === 0){
             this.showToast('Please enter Valid ID','error')
         }
@@ -124,9 +104,15 @@ export default {
             this.$refs.myModalRef.show()        
             this.msg = "$ " + msg
             let index = tickets.indexOf(find[0])
-            // console.log(index)
             if(index > -1 ){
               console.log("remove element")
+              let b = tickets.splice(index,1)
+              // let c = tickets.reduce( (pv,cv) => {
+              //   if( (cv.id !== Number(this.id)) ){
+              //     pv.push(cv)
+              //   }
+              // }, [])
+              console.log(b)
             }
           }
           
@@ -139,11 +125,6 @@ export default {
     }
     }
 };
-
-
-
-
-
 </script>
 <style>
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro");
