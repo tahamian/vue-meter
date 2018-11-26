@@ -22,7 +22,7 @@
       <b-collapse id="accordion2" accordion="my-accordion" role="tabpanel">
         <b-card-body>
           <CreditCard></CreditCard>
-          <b-modal ref="myModalRef1" hide-footer hide-header-close size="lg">
+          <b-modal ref="myModalRef1" no-close-on-backdrop no-close-on-esc hide-footer hide-header-close size="lg">
             <div class="d-block text-center">
              <h3>Printed Receipt</h3>
               <div>
@@ -56,11 +56,11 @@
           <p class="card-text">
             <bitcoin v-bind:amount="bitcoins"> 
             </bitcoin>
-          <div>
+          <div align = "center">
             <b-button @click="showModal">
               Pay to Wallet
             </b-button>
-            <b-modal ref="myModalRef" hide-footer size="lg" hide-header-close>
+            <b-modal ref="myModalRef" no-close-on-backdrop no-close-on-esc hide-footer size="lg" hide-header-close>
               <div class="d-block text-center">
                 <h3>Printed Receipt</h3>
                 <div>
