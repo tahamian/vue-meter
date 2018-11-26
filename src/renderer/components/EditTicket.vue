@@ -3,7 +3,7 @@
 
 <div class="d-flex justify-content-center">
     <br>
-    <h1>Refund Ticket</h1>
+    <h2>Refund Ticket:</h2>
 </div>
 
 <div class ="d-flex justify-content-center">
@@ -11,24 +11,38 @@
  <b-form class="form-inline">
   <div class="form-group mb-2">
     <label for="ticketId" class="sr-only">Enter Ticket ID</label>
-    <input type="text"   readonly class="form-control-plaintext" id="staticEmail2" value="Enter Ticket ID  : ">
+    <input type="text"   readonly class="form-control-plaintext" 
+    id="staticEmail2" value="Enter Ticket ID :">
   </div>
   <div class="form-group mx-sm-3 mb-0">
-    <input v-model="id" type="text" class="form-control" id="TicketID" placeholder="Ticket ID">
+    <input v-model="id" type="text" class="form-control" id="TicketID" 
+    placeholder="Ticket ID">
   </div>
-  <b-button v-on:click="updateTitle(tickets)" variant="primary">Confirm identity</b-button>
+  <b-button v-on:click="updateTitle(tickets)" variant="primary" 
+  :disabled="id == null || id == ''"  >
+    Return Ticket</b-button>
 </b-form>
 </div>
 </div>
-<div class ="d-flex justify-content-center">
-    <br>
-    <h1>Your Refund Is: </h1>
-</div>
 
-<div class ="d-flex justify-content-center">
-<h4>{{msg}}</h4>
-</div>
+<b-modal ref="myModalRef" no-close-on-backdrop no-close-on-esc hide-footer hide-header-close title="Please Collect Your change">
+      <div class="d-block text-center">
+        <h3>Refund Sucessful</h3>
+        <img src="../assets/checkmark.png">
+        <div class ="d-flex justify-content-center">
+            <br>
+            <h3>Your Refund Is: </h3>
+        </div>
+
+      <div class ="d-flex justify-content-center">
+      <h4>{{msg}}</h4>
+      </div>
   
+      </div>
+      <b-btn class="mt-3" variant="outline-danger" block @click="hideModal">Close Me</b-btn>
+    </b-modal>
+
+
    
  
   
@@ -39,40 +53,35 @@
 
 
 <script>
+import Vue from 'vue'
+import Toasted from 'vue-toasted'
+
+Vue.use(Toasted)
+
 export default {
   name: "edit-ticket",
   props: ["tickets"],
   data () {
     return {
-      ticketIdInput: null,
-      timeFromNow: null,
-      timeLater : null,
-      ticketer: null,
-      date : [],
       msg: null,
-      futureMin : 15,
-      amount : '',
-      ampm : true,
-      days : ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
-      months : ['January','February','March','April','May','June','July','August','September','October','November','December'],
-      nums : ['st','nd','rd','th'],
-      formatedMins : '',
-      mins : '',
-      hours : '',
-      todate : [],
-      rate : 0.25,
       id : null
     }
   },
-  
+  destroyed () {
+  //  console.log("hello")
+  },
   methods: {
 
-     
+      showToast(msg, type) {
+      let options = {
+        duration: 3000,
+        singleton: true
+      }
 
-      checkIdExist(id){
+      if (type) options.type = type;
 
-      },
-
+      Vue.toasted.show(msg, options);
+    },
       getCurrentTime(expireTime){
       
         var input = new Date(expireTime);
@@ -90,20 +99,36 @@ export default {
 
 
       updateTitle: function(tickets){
-        var check = false
-        
-        
-        for (let item in tickets){
-           if(tickets[item].id==this.id){
-               check = true
-               this.msg = "$ " + this.getCurrentTime(tickets[item].EpochDate)
-           }
-        }
-        if(check ==false){
-            this.msg = "Error Could Not Find Ticket "
-        }
 
-      }
+        let find = tickets.filter( (x) =>{
+          return x.id === Number(this.id)
+        })
+        console.log(find)
+        if (find.length === 0){
+            this.showToast('Please enter Valid ID','error')
+        }
+        else{
+          let msg = this.getCurrentTime(find[0].EpochDate)
+          if(msg == 0){
+            this.showToast('This Ticket Has expired','error')
+          }
+          else{
+            this.$refs.myModalRef.show()        
+            this.msg = "$ " + msg
+            let index = tickets.indexOf(find[0])
+            // console.log(index)
+            if(index > -1 ){
+              console.log("remove element")
+            }
+          }
+          
+        }
+      },
+        hideModal () {
+          this.id = null;
+          this.msg = null;
+          this.$refs.myModalRef.hide()
+    }
     }
 };
 
@@ -125,15 +150,17 @@ body {
   font-family: "Source Sans Pro", sans-serif;
 }
 
-#wrapper {
-  background: radial-gradient(
-    ellipse at top left,
-    rgba(255, 255, 255, 1) 40%,
-    rgba(229, 229, 229, 0.9) 100%
-  );
-  height: 100vh;
-  padding: 60px 80px;
-  width: 100vw;
+.wrapper1 {
+ background:
+      radial-gradient(
+        ellipse at top left,
+        rgba(255, 255, 255, 1) 40%,
+        rgba(229, 229, 229, .9) 100%
+      );
+  max-width: 960px; /* 20px smaller, to fit the paddings on the sides */
+
+  padding-right: 10px;
+  padding-left: 10px;
 }
 
 #logo {

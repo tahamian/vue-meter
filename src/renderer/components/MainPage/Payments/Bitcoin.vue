@@ -1,4 +1,5 @@
 <template>
+<div align = "center">
 <div>
   <img src="/src/renderer/assets/QR.svg" alt="QR Code not avaiable">
  <br>
@@ -8,6 +9,9 @@
     Wallet : {{wallet}}
 </div>
 </div>
+
+</div>
+
 
 </template>
 

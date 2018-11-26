@@ -1,10 +1,12 @@
 <template>
-  <div id="wrapper" align="center">
+  <div align = "center">
+    
+    
 
     <div class ="d-flex justify-content-center">
       <h1>Welcome to the Parking Meter!</h1>
     </div>
-      
+      <br>
     <div>
       <h4>Select Amount Of Time:</h4>
     </div>
@@ -22,24 +24,26 @@
         <b-button class="btn btn-danger btn-number" style="width:38px" v-on:click="remove_time(15)" :disabled="futureMin <=15">-</b-button>
       </div>
     </div>
-        
+     
     <div class = "d-flex justify-content-center"> 
+       <br>
       <h2>Your parking will expire at : </h2>
     </div>
 
     <div class = "d-flex justify-content-center"> 
+      
       <h5>{{todate[0]}}, {{ todate[1] }}, {{todate[2]}}{{todate[3]}}, <span>{{todate[4]}}</span> {{timeLater}}  </h5>&nbsp;
     </div>
-
+<br>
     <div>
       <h4> Total amount is :  ${{amount}}   </h4>
     </div>
-
-     <button v-on:click="sendPayment">
+<br>
+     <b-button variant="primary" v-on:click="sendPayment">
        Print Ticket
-     </button>
+     </b-button>
    
-  </div>
+  </div> 
 </template>
 
 <script>
@@ -286,6 +290,7 @@
   }
 
   .divider {
+    position: relative;
     display: inline-block;
     margin: 0;
     
