@@ -22,9 +22,9 @@
       <b-collapse id="accordion2" accordion="my-accordion" role="tabpanel">
         <b-card-body>
           <CreditCard></CreditCard>
-          <b-modal ref="myModalRef1" no-close-on-backdrop no-close-on-esc hide-footer hide-header-close size="lg">
+          <b-modal ref="myModalRef1" no-close-on-backdrop no-close-on-esc hide-footer hide-header hide-header-close size="lg">
             <div class="d-block text-center">
-             <h3>Printed Receipt</h3>
+             <h3 style="padding:5px;">Printed Receipt</h3>
               <div>
                 <div style="font-size: 16px; color: rgba(0, 0, 0, 0.6); padding: 0px 10px 12px; box-sizing: border-box; 
                   overflow-y: hidden; position: relative; margin: auto; text-align: center; max-height: 626px;">
@@ -60,9 +60,10 @@
             <b-button @click="showModal">
               Pay to Wallet
             </b-button>
-            <b-modal ref="myModalRef" no-close-on-backdrop no-close-on-esc hide-footer size="lg" hide-header-close>
+            <b-modal ref="myModalRef" no-close-on-backdrop no-close-on-esc hide-footer hide-header size="lg" hide-header-close>
               <div class="d-block text-center">
-                <h3>Printed Receipt</h3>
+                
+                <h3 style="padding:5px;">Printed Receipt</h3>
                 <div>
                   <div style="font-size: 16px; color: rgba(0, 0, 0, 0.6); padding: 0px 10px 12px; box-sizing: border-box; overflow-y: hidden; position: relative; margin: auto; text-align: center; max-height: 626px;">
                     <div style="border: 2px solid rgb(161, 161, 161); background: white; padding: 10px 20px; border-radius: 25px;">
