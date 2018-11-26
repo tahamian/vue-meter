@@ -3,13 +3,13 @@
 	<div
 		style="display: flex; justify-content: center; align-items: center; flexDirection: column;"
 		v-shortkey="{
-			insertPenny: ['ctrl', '1'],
-			insertNickel: ['ctrl', '2'],
-			insertDime: ['ctrl', '3'],
-			insertQuarter: ['ctrl', '4'],
-			insertLoonie: ['ctrl', '5'],
-			insertToonie: ['ctrl', '6'],
-			returnCoins: ['ctrl', '7'] }" 
+			insertPenny: 		['ctrl', '1'],
+			insertNickel: 	['ctrl', '2'],
+			insertDime: 		['ctrl', '3'],
+			insertQuarter: 	['ctrl', '4'],
+			insertLoonie: 	['ctrl', '5'],
+			insertToonie: 	['ctrl', '6'],
+			returnCoins: 		['ctrl', '7'] }" 
 		@shortkey="keyboardShortcut">
 
 	<h2>Amount due:</h2>
@@ -18,16 +18,23 @@
 	<h2>Current balance:</h2>
 	<p style="font-size: 1.5em;">{{ this.balanceDisplay }}</p>
 
-	<button style="margin-top: 10px;" type="button" class="btn btn-success" @click="showModal" :disabled="!paymentReady()">Pay now</button>
+	<button
+		style="margin-top: 10px;"
+		type="button"
+		class="btn btn-success"
+		@click="showModal"
+		:disabled="!paymentReady()">Pay now
+	</button>
+
 	</div>
 
+	<!-- Print Preview modal -->
 	<b-modal ref="myModalRef" no-close-on-backdrop no-close-on-esc hide-footer hide-header-close size= "lg">
 		<div class="d-block text-center">
 			<h3>Printed Receipt</h3>
 			<div>
-				<div style="font-size: 16px; color: rgba(0, 0, 0, 0.6); padding: 0px 10px 12px; box-sizing: border-box; 
-					overflow-y: hidden; position: relative; margin: auto; text-align: center; max-height: 626px;">
-					<div style="border: 2px solid rgb(161, 161, 161); background: white; padding: 10px 20px; border-radius: 25px;">
+				<div id="print-preview-modal">
+					<div id="print-preview-modal-inner">
 						<img src="../../../assets/avatar.png" alt="">
 						<br> <b> Ticket ID: </b>{{$route.params.id}}
 						<br> <b>Parking time:</b> {{$route.params.time}}
@@ -41,7 +48,7 @@
 				</div>
 			</div>
 		</div>
-		<b-btn class="mt-3" variant="outline-danger" block @click="hideModal1">Close</b-btn>
+		<b-btn class="mt-3" variant="outline-danger" block @click="hideModal">Close</b-btn>
 	</b-modal>
 </div>
 </template>
@@ -64,7 +71,7 @@ export default {
 		showModal() {
 			this.$refs.myModalRef.show();
 		},
-		hideModal1() {
+		hideModal() {
 			this.$refs.myModalRef.hide();
 			this.$router.push({ name: 'Main-Page' })
 		},
@@ -103,7 +110,10 @@ export default {
           break;
         case 'returnCoins':
           this.returnCoins();
-          break;
+					break;
+				case 'swipeCard':
+					this.showModal();
+					break;
       }
 		},
     formatPrice(num) {
@@ -114,4 +124,32 @@ export default {
 </script>
 
 <style>
+#outer
+{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#print-preview-modal
+{
+	font-size: 16px;
+	color: rgba(0, 0, 0, 0.6);
+	padding: 0px 10px 12px;
+	box-sizing: border-box;
+	overflow-y: hidden;
+	position: relative;
+	margin: auto;
+	text-align: center;
+	max-height: 626px;
+}
+
+#print-preview-modal-inner
+{
+	border: 2px solid rgb(161, 161, 161);
+	background: white;
+	padding: 10px 20px;
+	border-radius: 25px;
+}
+
 </style>

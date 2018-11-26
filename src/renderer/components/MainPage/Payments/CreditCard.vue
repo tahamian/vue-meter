@@ -1,12 +1,27 @@
 <template>
-  <form class="form-horizontal" role="form">
+  <form
+    class="form-horizontal"
+    role="form"
+    v-shortkey="{
+      swipeCard: ['ctrl' + '8']
+    }"
+    @shortkey="keyboardShortcut">
     <fieldset>
       <div class="form-group" style="display: flex; flexDirection: column; align-items: center;">
         <label class="control-label" for="card-type">Select a credit card type</label>
         <div>
-          <img class="icon margin-15 grayscale card-type-icon" v-on:click="selectCardType($event, 'VISA')" src="./../../../../../static/icons/visa-logo.svg">
-          <img class="icon margin-15 grayscale card-type-icon" v-on:click="selectCardType($event, 'MASTERCARD')" src="./../../../../../static/icons/mastercard-logo.svg">
-          <img class="icon margin-15 grayscale card-type-icon" v-on:click="selectCardType($event, 'AMEX')" src="./../../../../../static/icons/amex-logo.svg">
+          <img
+            class="icon margin-15 grayscale card-type-icon"
+            v-on:click="selectCardType($event, 'VISA')"
+            src="./../../../../../static/icons/visa-logo.svg">
+          <img
+            class="icon margin-15 grayscale card-type-icon"
+            v-on:click="selectCardType($event, 'MASTERCARD')"
+            src="./../../../../../static/icons/mastercard-logo.svg">
+          <img
+            class="icon margin-15 grayscale card-type-icon"
+            v-on:click="selectCardType($event, 'AMEX')"
+            src="./../../../../../static/icons/amex-logo.svg">
         </div>
       </div>
       <div class="form-group" style="display: flex; flexDirection: column; align-items: center;">
@@ -89,6 +104,14 @@ export default {
 
   },
   methods: {
+    keyboardShortcut (event) {
+      switch(event.srcKey) {
+        case 'swipeCard':
+          this.showToast('Processing card swipe...', 'info')
+          this.$parent.$parent.showModal1()
+          break;
+      }
+    },
     showToast(msg, type) {
       let options = {
         duration: 3000,
@@ -120,7 +143,6 @@ export default {
         return;
       }
 
-      // this.showToast('Payment successful', 'success');
       this.$parent.$parent.showModal1()
     },
     selectCardType(event, type) {

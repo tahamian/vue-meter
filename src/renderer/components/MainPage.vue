@@ -1,16 +1,5 @@
 <template>
-  <div
-  
-    id="wrapper1"
-    v-shortkey="{
-      insertPenny: ['ctrl', '1'],
-      insertNickel: ['ctrl', '2'],
-      insertDime: ['ctrl', '3'],
-      insertQuarter: ['ctrl', '4'],
-      insertLoonie: ['ctrl', '5'],
-      insertToonie: ['ctrl', '6'],
-      returnCoins: ['ctrl', '7'] }" 
-    @shortkey="keyboardShortcut">
+  <div id="wrapper1">
     <div>
 
    <b-card no-body>

@@ -1,8 +1,5 @@
 <template>
   <div align = "center">
-    
-    
-
     <div class ="d-flex justify-content-center">
       <h1>Welcome to the Parking Meter!</h1>
     </div>
