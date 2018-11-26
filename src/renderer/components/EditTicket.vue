@@ -18,20 +18,31 @@
     <input v-model="id" type="text" class="form-control" id="TicketID" 
     placeholder="Ticket ID">
   </div>
-  <b-button v-on:click="updateTitle(tickets)" variant="primary" :disabled="id == null || id == ''">
+  <b-button v-on:click="updateTitle(tickets)" variant="primary" 
+  :disabled="id == null || id == ''"  >
     Return Ticket</b-button>
 </b-form>
 </div>
 </div>
-<div class ="d-flex justify-content-center">
-    <br>
-    <h3>Your Refund Is: </h3>
-</div>
 
-<div class ="d-flex justify-content-center">
-<h4>{{msg}}</h4>
-</div>
+<b-modal ref="myModalRef" hide-footer title="Please Collect Your change">
+      <div class="d-block text-center">
+        <h3>Refund Sucessful</h3>
+        <img src="../assets/checkmark.png">
+        <div class ="d-flex justify-content-center">
+            <br>
+            <h3>Your Refund Is: </h3>
+        </div>
+
+      <div class ="d-flex justify-content-center">
+      <h4>{{msg}}</h4>
+      </div>
   
+      </div>
+      <b-btn class="mt-3" variant="outline-danger" block @click="hideModal">Close Me</b-btn>
+    </b-modal>
+
+
    
  
   
@@ -97,16 +108,27 @@ export default {
             this.showToast('Please enter Valid ID','error')
         }
         else{
-          console.log(typeof find[0].EpochDate)
-          this.msg = "$ " + this.getCurrentTime(find[0].EpochDate)
-          this.showToast('Please Collect your change','success')
-          let index = tickets.indexOf(find[0])
-          console.log(index)
-          if(index > -1 ){
-            console.log("remove element")
+          let msg = this.getCurrentTime(find[0].EpochDate)
+          if(msg == 0){
+            this.showToast('This Ticket Has expired','error')
           }
+          else{
+            this.$refs.myModalRef.show()        
+            this.msg = "$ " + msg
+            let index = tickets.indexOf(find[0])
+            // console.log(index)
+            if(index > -1 ){
+              console.log("remove element")
+            }
+          }
+          
         }
-      }
+      },
+        hideModal () {
+          this.id = null;
+          this.msg = null;
+          this.$refs.myModalRef.hide()
+    }
     }
 };
 
