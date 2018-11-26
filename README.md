@@ -16,11 +16,3 @@ npm run build
 
 
 ```
-
----
-
-might want to add this only the css part
-
-https://github.com/manjufy/v-minusplusinput
-
-
