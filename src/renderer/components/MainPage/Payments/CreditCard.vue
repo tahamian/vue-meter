@@ -35,7 +35,7 @@
         <label class="control-label" for="card-number" style="margin-left: 5px;"><b>Card Number</b></label>
         <div>
           <input type="text" class="form-control" name="card-number" style="margin-left: 5px; text-align: center;" id="card-number"
-            placeholder="Card Number" v-model="cardNumber" maxlength="19">
+            placeholder="Card Number" v-model="cardNumber" maxlength="19" v-on:keypress="isNumber()">
         </div>
       </div>
       <div class="form-group" style="display: flex; flexDirection: column; align-items: center;">
@@ -73,7 +73,7 @@
       <div class="form-=group" style="display: flex; flexDirection: column; align-items: center;">
         <label class="control-label" for="cvv" style="margin-left: 5px;" alt="testeroo"><b>Security Code</b></label>
         <input type="text" class="form-control" name="cvv" style="margin-left: 5px; text-align: center; width: 100px;"
-          id="cvv" placeholder="XXX" v-model="cvv" maxlength="3">
+          id="cvv" placeholder="XXX" v-model="cvv" maxlength="3" v-on:keypress="isNumber()">
       </div>
       <div class="form-group">
         <div style="display: flex; flexDirection: column; align-items: center;" class="margin-15">
@@ -99,11 +99,20 @@ export default {
       cardNumber: '',
       cvv: '',
       cardExpiryMonth: 'Month',
-      cardExpiryYear: '2013'
+      cardExpiryYear: '2018'
     }
 
   },
   methods: {
+    isNumber: function(evt) {
+      evt = (evt) ? evt : window.event;
+      var charCode = (evt.which) ? evt.which : evt.keyCode;
+      if ((charCode > 31 && (charCode < 48 || charCode > 57)) ) {
+        evt.preventDefault();;
+      } else {
+        return true;
+      }
+    },
     keyboardShortcut (event) {
       switch(event.srcKey) {
         case 'swipeCard':

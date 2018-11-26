@@ -15,7 +15,7 @@
     id="staticEmail2" value="Enter Ticket ID :">
   </div>
   <div class="form-group mx-sm-3 mb-0">
-    <input v-model="id" type="text" class="form-control" id="TicketID" 
+    <input v-model="id" type="text" class="form-control" id="TicketID" v-on:keypress="isNumber()" maxlength="7"
     placeholder="Ticket ID">
   </div>
   <b-button v-on:click="updateTitle(tickets)" variant="primary" 
@@ -71,7 +71,15 @@ export default {
   //  console.log("hello")
   },
   methods: {
-
+      isNumber: function(evt) {
+      evt = (evt) ? evt : window.event;
+      var charCode = (evt.which) ? evt.which : evt.keyCode;
+      if ((charCode > 31 && (charCode < 48 || charCode > 57)) ) {
+        evt.preventDefault();;
+      } else {
+        return true;
+      }
+    },
       showToast(msg, type) {
       let options = {
         duration: 3000,
