@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class ="wrap">
 
 <div class="d-flex justify-content-center">
     <br>
@@ -165,6 +165,9 @@ main {
 
 main > div {
   flex-basis: 50%;
+}
+.wrap {
+  padding-top: 7%;
 }
 
 .left-side {

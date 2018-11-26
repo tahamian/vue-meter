@@ -1,5 +1,5 @@
 <template>
-  <div align = "center">
+  <div class = "content" align = "center">
     <div class ="d-flex justify-content-center">
       <h1>Welcome to the Parking Meter!</h1>
     </div>
@@ -9,16 +9,16 @@
     </div>
 
     <div class="box2">    
-      <b-button class="btn btn-success btn-number"  v-on:click="add_time(60)" >+</b-button> 
+      <b-button class="btn btn-success btn-number" style="width:50px;" v-on:click="add_time(60)" >+</b-button> 
       <p class = "textHour">{{hours}}&nbsp;&nbsp;hours </p>  
-      <b-button class="btn btn-danger btn-number" style="width:38px" v-on:click="remove_time(60)" :disabled="futureMin <=60">-</b-button>
+      <b-button class="btn btn-danger btn-number" style="width:50px;" v-on:click="remove_time(60)" :disabled="futureMin <=60">-</b-button>
     </div>
 
     <div class="box2">
       <div>
-        <b-button class="btn btn-success btn-number" v-on:click="add_time(15)" >+</b-button>
-        <p class = "textHour">{{mins}}&nbsp;&nbsp;minutes</p> 
-        <b-button class="btn btn-danger btn-number" style="width:38px" v-on:click="remove_time(15)" :disabled="futureMin <=15">-</b-button>
+        <b-button class="btn btn-success btn-number" style="width:50px;" v-on:click="add_time(15)" >+</b-button>
+        <p class = "textMinute">{{mins}}&nbsp;&nbsp;minutes</p> 
+        <b-button class="btn btn-danger btn-number" style="width:50px" v-on:click="remove_time(15)" :disabled="futureMin <=15">-</b-button>
       </div>
     </div>
      
@@ -311,14 +311,22 @@
     padding: 30px;
    
   }
+  .content {
+    padding: 10%;
+  }
 
   .textHour{
+    position: relative;
+    padding-top: 10px;
+    left: 0px;
+    
+  }
+.textMinute{
     position: relative;
     padding-top: 10px;
     left: 10px;
     
   }
-
   .doc button {
     font-size: .8em;
     cursor: pointer;
