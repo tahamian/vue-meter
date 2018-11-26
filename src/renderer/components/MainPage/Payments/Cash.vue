@@ -21,7 +21,7 @@
 	<button style="margin-top: 10px;" type="button" class="btn btn-success" @click="showModal" :disabled="!paymentReady()">Pay now</button>
 	</div>
 
-	<b-modal ref="myModalRef" hide-footer hide-header-close size= "lg">
+	<b-modal ref="myModalRef" no-close-on-backdrop no-close-on-esc hide-footer hide-header-close size= "lg">
 		<div class="d-block text-center">
 			<h3>Printed Receipt</h3>
 			<div>
