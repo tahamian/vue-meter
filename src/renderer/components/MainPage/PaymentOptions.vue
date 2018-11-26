@@ -66,9 +66,9 @@
               <b-button @click="showModal">
                 Pay to Wallet
               </b-button>
-        <b-modal ref="myModalRef" hide-footer title="Ticket Print" size="lg">
+        <b-modal ref="myModalRef" hide-footer size="lg" hide-header-close>
               <div class="d-block text-center">
-                <h3>Thank you!</h3>
+                <h3>Printed Receipt</h3>
                 <div>
                
                 <!-- <h3 style="margin: 0px; padding: 12px 12px 10px; color: rgba(0, 0, 0, 0.87); font-size: 22px; line-height: 32px; font-weight: 400; border-bottom: none; text-align: center;">Ticket Printed!</h3> -->
@@ -90,6 +90,7 @@
                 </div>
                 </div>
               </div>
+              
             <b-btn class="mt-3" variant="outline-danger" block @click="hideModal">Close</b-btn>
             </b-modal>
              </div>
