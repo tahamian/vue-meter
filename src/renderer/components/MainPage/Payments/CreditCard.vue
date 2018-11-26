@@ -8,21 +8,6 @@
     @shortkey="keyboardShortcut">
     <fieldset>
       <div class="form-group" style="display: flex; flexDirection: column; align-items: center;">
-        <label class="control-label" for="card-type">Select a credit card type</label>
-        <div>
-          <img
-            class="icon margin-15 grayscale card-type-icon"
-            v-on:click="selectCardType($event, 'VISA')"
-            src="./../../../../../static/icons/visa-logo.svg">
-          <img
-            class="icon margin-15 grayscale card-type-icon"
-            v-on:click="selectCardType($event, 'MASTERCARD')"
-            src="./../../../../../static/icons/mastercard-logo.svg">
-          <img
-            class="icon margin-15 grayscale card-type-icon"
-            v-on:click="selectCardType($event, 'AMEX')"
-            src="./../../../../../static/icons/amex-logo.svg">
-        </div>
       </div>
       <div class="form-group" style="display: flex; flexDirection: column; align-items: center;">
         <label class="control-label" for="card-holder-name" style="margin-left: 5px;"><b>Cardholder Name</b></label>
@@ -142,7 +127,7 @@ export default {
         return 'Please make sure all of the form fields are filled out'
       }
 
-      if (this.cardType == '') return 'Please select a Card Type'
+     
 
       if (!(/^([0-9]{19})$/.test(this.cardNumber))) return 'Invalid field: Card Number'
       if (!(/^([0-9]{3})$/.test(this.cvv))) return 'Invalid field: Card Security Code'
