@@ -1,7 +1,7 @@
 <template>
-  <div id="wrapper" align="center">
+  <div align = "center">
     
-     <div class ="d-flex justify-content-center">
+     <div class="divider">
         <h1>Welcome to the Parking Meter!</h1>
       </div>
 
@@ -106,12 +106,12 @@
     
     <!-- <button v-on:click="reset"> Pay Now </button> -->
    <!-- <router-link :to="{ name: 'cash', params : currentTic}"> -->
-     <button v-on:click="reset">
+     <b-button v-on:click="reset" variant="primary">
        Print Ticket
-     </button>
+     </b-button>
    <!-- </router-link> -->
    
-  </div>
+  </div> 
 </template>
 
 <script>
@@ -344,6 +344,7 @@ import { format } from 'url';
   }
 
   .divider {
+    position: relative;
     display: inline-block;
     margin: 0;
     

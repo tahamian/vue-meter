@@ -3,7 +3,7 @@
 
 <div class="d-flex justify-content-center">
     <br>
-    <h1>Refund Ticket</h1>
+    <h2>Refund Ticket:</h2>
 </div>
 
 <div class ="d-flex justify-content-center">
@@ -22,7 +22,7 @@
 </div>
 <div class ="d-flex justify-content-center">
     <br>
-    <h1>Your Refund Is: </h1>
+    <h3>Your Refund Is: </h3>
 </div>
 
 <div class ="d-flex justify-content-center">
@@ -64,14 +64,11 @@ export default {
       id : null
     }
   },
-  
+  destroyed () {
+   console.log("hello")
+  },
   methods: {
 
-     
-
-      checkIdExist(id){
-
-      },
 
       getCurrentTime(expireTime){
       
@@ -125,15 +122,17 @@ body {
   font-family: "Source Sans Pro", sans-serif;
 }
 
-#wrapper {
-  background: radial-gradient(
-    ellipse at top left,
-    rgba(255, 255, 255, 1) 40%,
-    rgba(229, 229, 229, 0.9) 100%
-  );
-  height: 100vh;
-  padding: 60px 80px;
-  width: 100vw;
+.wrapper1 {
+ background:
+      radial-gradient(
+        ellipse at top left,
+        rgba(255, 255, 255, 1) 40%,
+        rgba(229, 229, 229, .9) 100%
+      );
+  max-width: 960px; /* 20px smaller, to fit the paddings on the sides */
+
+  padding-right: 10px;
+  padding-left: 10px;
 }
 
 #logo {

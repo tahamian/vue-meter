@@ -1,6 +1,7 @@
 <template>
   <div
-    id="wrapper"
+  
+    id="wrapper1"
     v-shortkey="{
       insertPenny: ['ctrl', '1'],
       insertNickel: ['ctrl', '2'],
@@ -10,7 +11,9 @@
       insertToonie: ['ctrl', '6'],
       returnCoins: ['ctrl', '7'] }" 
     @shortkey="keyboardShortcut">
-    <b-card no-body>
+    <div>
+
+   <b-card no-body>
       <b-tabs pills card>
         <b-tab title="Buy A Ticket" active>
           <create-ticket :value="tickets"></create-ticket>
@@ -20,6 +23,13 @@
         </b-tab>
       </b-tabs>
     </b-card>
+
+
+    </div>
+ 
+
+
+
   </div>
 </template>
 
@@ -83,5 +93,26 @@ import { format } from 'url';
 }
 </script>
 <style>
+  @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body { font-family: 'Source Sans Pro', sans-serif; }
+  #wrapper1 {
+    background:
+      radial-gradient(
+        ellipse at top left,
+        rgba(255, 255, 255, 1) 40%,
+        rgba(229, 229, 229, .9) 100%
+      );
+  max-width: 960px; /* 20px smaller, to fit the paddings on the sides */
+
+  padding-right: 10px;
+  padding-left: 10px;
+
+  }
 </style>
