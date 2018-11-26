@@ -56,7 +56,7 @@
           <p class="card-text">
             <bitcoin v-bind:amount="bitcoins"> 
             </bitcoin>
-          <div>
+          <div align = "center">
             <b-button @click="showModal">
               Pay to Wallet
             </b-button>
