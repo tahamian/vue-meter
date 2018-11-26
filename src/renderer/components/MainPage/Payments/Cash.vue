@@ -12,11 +12,13 @@
 			returnCoins: ['ctrl', '7'] }" 
 		@shortkey="keyboardShortcut">
 
-	Amount due: {{ this.amount }}
+	<h2>Amount due:</h2>
+	<p style="font-size: 1.5em;">{{ this.amount }}</p>
 
-	Current balance: {{ this.balanceDisplay }}
+	<h2>Current balance:</h2>
+	<p style="font-size: 1.5em;">{{ this.balanceDisplay }}</p>
 
-	<button type="button" class="btn btn-success" @click="showModal" :disabled="!paymentReady()">Pay now</button>
+	<button style="margin-top: 10px;" type="button" class="btn btn-success" @click="showModal" :disabled="!paymentReady()">Pay now</button>
 	</div>
 
 	<b-modal ref="myModalRef" hide-footer title="Ticket Print" size="lg">
