@@ -106,9 +106,9 @@
     
     <!-- <button v-on:click="reset"> Pay Now </button> -->
    <!-- <router-link :to="{ name: 'cash', params : currentTic}"> -->
-     <button v-on:click="reset">
-       Print Ticket
-     </button>
+     <b-btn v-on:click="reset">
+       Proceed to Payment
+     </b-btn>
    <!-- </router-link> -->
    
   </div>
