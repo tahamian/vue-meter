@@ -25,7 +25,7 @@
 </div>
 </div>
 
-<b-modal ref="myModalRef" hide-footer title="Please Collect Your change">
+<b-modal ref="myModalRef" no-close-on-backdrop no-close-on-esc hide-footer hide-header-close title="Please Collect Your change">
       <div class="d-block text-center">
         <h3>Refund Sucessful</h3>
         <img src="../assets/checkmark.png">
