@@ -137,7 +137,7 @@
           <div class="d-flex justify-content-right">
           <img
             src="/src/renderer/assets/swipe.png"
-            style="height: 250px; width: 250px;"
+            style="height: 200px; width: 200px;"
             alt="Swipe" 
           >
         </div>
