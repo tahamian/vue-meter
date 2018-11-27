@@ -7,8 +7,12 @@
     }"
     @shortkey="keyboardShortcut"
   >
+  <div class="d-flex justify-content-center">
+           <h2>Enter Card Information <u><b>Or</b></u> Swipe Credit Card</h2>
+        </div>
+        <!-- <vr class="divider"> -->
     <fieldset>
-      <div class="d-flex justify-content-center" style="padding-left:10px; width: 800px;">
+      <div class="d-flex justify-content-center" style="margin-left:-15px; width: 800px;">
         <div class="boxE">
           <div class="d-flex justify-content-center">
             <label class="control-label" for="card-holder-name" style="margin-left: 0; ">
@@ -79,7 +83,9 @@
           </div>
            <div class="d-flex justify-content-center">
              <div style="padding-right: 16px; margin-right:13px; ">
-              <select class="form-control margin-15" name="expiry-year" v-model="cardExpiryYear">
+              <select class="form-control margin-15" name="expiry-year" v-model="cardExpiryYear" 
+                
+              >
                 <option value="18">2018</option>
                 <option value="19">2019</option>
                 <option value="20">2020</option>
@@ -117,14 +123,12 @@
           </div>
         </div>
 
-        <div class="d-flex justify-content-center">
-          <h1 style="padding-top: 20vh; ">Or</h1>
-        </div>
+        
 
-        <div class="d-flex justify-content-center">
+        <div class="d-flex justify-content-center" style="padding-right:200px; padding-top:65px" >
           <img
             src="/src/renderer/assets/swipe.jpg"
-            style="height: 500px; width: 400px;"
+            style="height: 250px; width: 200px;"
             alt="Swipe"
           >
         </div>

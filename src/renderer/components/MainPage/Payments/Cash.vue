@@ -28,7 +28,8 @@
 
 	</div>
 	<!-- Print Preview modal -->
-	<b-modal ref="myModalRef" no-close-on-backdrop no-close-on-esc hide-footer hide-header hide-header-close size= "lg">
+	<b-modal ref="myModalRef" no-close-on-backdrop no-close-on-esc hide-footer hide-header 
+	hide-header-close size= "lg">
 		<div class="d-block text-center">
 			<h3 style="padding:5px;">Printed Receipt</h3>
 			<div>
@@ -132,7 +133,7 @@ export default {
 
 #print-preview-modal
 {
-	font-size: 16px;
+	font-size: 14px;
 	color: rgba(0, 0, 0, 0.6);
 	padding: 0px 10px 12px;
 	box-sizing: border-box;
