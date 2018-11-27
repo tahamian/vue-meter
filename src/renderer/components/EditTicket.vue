@@ -81,10 +81,10 @@ export default {
         var input = new Date(expireTime);
         var cur_date_vue = new Date();
         var time = cur_date_vue.getTime()
-        if(Number((expireTime - time)*(1/60000) * 0.25).toFixed(2)<0){
+        if(Number((expireTime - time)*(1/60000) * 0.1).toFixed(2)<0){
             return 0;
         }
-        return Number((expireTime - time)*(1/60000) * 0.25).toFixed(2);
+        return Number((expireTime - time)*(1/60000) * 0.1).toFixed(2);
       },
       updateTitle: function(tickets){
         

@@ -91,6 +91,7 @@
               <select class="form-control margin-15" name="expiry-year" v-model="cardExpiryYear" 
 
               >
+                <option>Year</option>
                 <option value="18">2018</option>
                 <option value="19">2019</option>
                 <option value="20">2020</option>
@@ -164,7 +165,7 @@ export default {
       cardNumber: "",
       cvv: "",
       cardExpiryMonth: "Month",
-      cardExpiryYear: "2018"
+      cardExpiryYear: "Year"
     };
   },
   methods: {
@@ -201,7 +202,7 @@ export default {
         this.cardNumber == "" ||
         this.cvv == "" ||
         this.cardExpiryMonth == "" ||
-        this.cardExpiryYear == "" ||
+        this.cardExpiryYear == "Year" ||
         this.cardExpiryMonth == "Month"
       ) {
         return "Please make sure all of the form fields are filled out";
