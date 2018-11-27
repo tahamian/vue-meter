@@ -11,8 +11,13 @@
            <h2>Enter Card Information <u><b>Or</b></u> Swipe Credit Card</h2>
         </div>
         <!-- <vr class="divider"> -->
+          
+
     <fieldset>
-      <div class="d-flex justify-content-center" style="margin-left:-15px; width: 800px;">
+    <table class="My_Table">
+    <tr>
+    <td>
+      <div class="d-flex justify-content-left" style="margin-left:10px; width: 335px;">
         <div class="boxE">
           <div class="d-flex justify-content-center">
             <label class="control-label" for="card-holder-name" style="margin-left: 0; ">
@@ -84,7 +89,7 @@
            <div class="d-flex justify-content-center">
              <div style="padding-right: 16px; margin-right:13px; ">
               <select class="form-control margin-15" name="expiry-year" v-model="cardExpiryYear" 
-                
+
               >
                 <option value="18">2018</option>
                 <option value="19">2019</option>
@@ -116,25 +121,31 @@
           >
           
           </div>
+          
+        
 
-
-          <div class="d-flex justify-content-center" style = "padding-top: 20px;">
+          <div  style = "padding-top: 20px;">
           <button type="button" v-on:click="processCardPayment()" class="btn btn-success">Pay Now</button>
           </div>
         </div>
-
-        
-
-        <div class="d-flex justify-content-center" style="padding-right:200px; padding-top:65px" >
+       
+      
+      </div>
+      </div>
+      </td>
+        <td>
+          <div class="d-flex justify-content-right">
           <img
-            src="/src/renderer/assets/swipe.jpg"
-            style="height: 250px; width: 200px;"
-            alt="Swipe"
+            src="/src/renderer/assets/swipe.png"
+            style="height: 250px; width: 250px;"
+            alt="Swipe" 
           >
         </div>
-      </div>
-      </div>
+      </td>
+    </tr>
+    </table>
     </fieldset>
+    
   </form>
 </template>
 
@@ -242,7 +253,10 @@ export default {
 .margin-15 {
   margin: 15px 15px 15px 15px;
 }
-.boxF {
+/* div.d-flex justify-content-left{
+  max-width: 355px;;
+} */
+/* .boxF {
   width: 40%;
   display: inline-block;
   padding: 10px;
@@ -251,9 +265,29 @@ export default {
   width: 100%;
   display: inline-block;
   padding: 30px;
-}
+} */
 .icon {
   height: 50px;
   width: 50px;
+}
+
+.My_Table{
+    /* width: 544px; */
+    max-width: 544px;
+    height: 400px;
+}
+.My_Table TD{ text-align: center; }
+.My_Table TD:not(:last-child){ padding-right: 30px; }
+.My_Table TD:not(:first-child){
+	padding-left: 30px;
+	background-size: 2px 100%;
+	background-repeat: no-repeat;
+	background-position: 0 0;		 
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,hsla(0,0%,0%,0)), color-stop(50%,hsla(0,0%,0%,.4)), color-stop(100%,hsla(0,0%,0%,0)));
+    background-image: -webkit-linear-gradient(top, hsla(0,0%,0%,0) 0%, hsla(0,0%,0%,.4) 50%, hsla(0,0%,0%,0) 100%); 
+    background-image: -moz-linear-gradient(top, hsla(0,0%,0%,0) 0%, hsla(0,0%,0%,.4) 50%, hsla(0,0%,0%,0) 100%);
+    background-image: -ms-linear-gradient(top, hsla(0,0%,0%,0) 0%, hsla(0,0%,0%,.4) 50%, hsla(0,0%,0%,0) 100%);
+    background-image: -o-linear-gradient(top, hsla(0,0%,0%,0) 0%, hsla(0,0%,0%,.4) 50%, hsla(0,0%,0%,0) 100%);
+    background-image: linear-gradient(to bottom, hsla(0,0%,0%,0) 0%, hsla(0,0%,0%,.4) 50%, hsla(0,0%,0%,0) 100%);
 }
 </style>
