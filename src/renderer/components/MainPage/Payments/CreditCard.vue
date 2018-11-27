@@ -1,4 +1,5 @@
 <template>
+
   <form
     class="form-horizontal"
     role="form"
@@ -6,7 +7,9 @@
       swipeCard: ['ctrl' + '8']
     }"
     @shortkey="keyboardShortcut">
-    <fieldset>
+
+    <div class="d-flex justify-content-center">
+     <fieldset>
       <div class="form-group" style="display: flex; flexDirection: column; align-items: center;">
       </div>
       <div class="form-group" style="display: flex; flexDirection: column; align-items: center;">
@@ -47,7 +50,8 @@
             <h3 style="padding-right: 10px; padding-top: 14px; padding-left: 20px;" >/</h3>
           </div>
           <div style="padding-right: 16px; margin-right:13px">
-            <select class="form-control margin-15" name="expiry-year" v-model="cardExpiryYear">
+            <select class="form-control margin-15" name="expiry-year"   v-model="cardExpiryYear">
+             
               <option value="18">2018</option>
               <option value="19">2019</option>
               <option value="20">2020</option>
@@ -69,6 +73,21 @@
         </div>
       </div>
     </fieldset>
+
+    <div class="d-flex justify-content-center" style="padding-left: 50px;padding-right: 20px; padding-top: 25vh;">
+      <p>OR</p>
+      </div>
+      
+      <div class="d-flex justify-content-center" >
+        
+      <img src="/src/renderer/assets/swipe.png" style="height: 200px; width: 200px; position: relative;top: 25%;"  alt="QR Code not avaiable">
+      
+      </div>
+      <p></p>
+
+
+    </div>
+    
   </form>
 </template>
 
