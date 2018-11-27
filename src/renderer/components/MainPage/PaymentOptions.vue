@@ -57,9 +57,9 @@
             <bitcoin v-bind:amount="bitcoins"> 
             </bitcoin>
           <div align = "center">
-            <b-button @click="showModal">
-              Pay to Wallet
-            </b-button>
+            <button class="btn btn-success" @click="showModal">
+              Pay Now
+            </button>
             <b-modal ref="myModalRef" no-close-on-backdrop no-close-on-esc hide-footer hide-header size="lg" hide-header-close>
               <div class="d-block text-center">
                 

@@ -63,7 +63,7 @@
       mins : '',
       hours : '',
       todate : [],
-      rate : 0.25,
+      rate : 0.1,
       id : 0,
       paymentSucess : 0,
       currentParking : []
@@ -307,6 +307,7 @@
   }
 
   .box2 {
+    width: 150px;
     display: inline-block;
     padding: 30px;
    

@@ -20,7 +20,7 @@
         <label class="control-label" for="card-number" style="margin-left: 5px;"><b>Card Number</b></label>
         <div>
           <input type="text" class="form-control" name="card-number" style="margin-left: 5px; text-align: center;" id="card-number"
-            placeholder="Card Number" v-model="cardNumber" maxlength="19" v-on:keypress="isNumber()">
+            placeholder="Card Number" v-model="cardNumber" maxlength="16" v-on:keypress="isNumber()">
         </div>
       </div>
       <div class="form-group" style="display: flex; flexDirection: column; align-items: center;">
@@ -127,9 +127,7 @@ export default {
         return 'Please make sure all of the form fields are filled out'
       }
 
-     
-
-      if (!(/^([0-9]{19})$/.test(this.cardNumber))) return 'Invalid field: Card Number'
+      if (!(/^([0-9]{16})$/.test(this.cardNumber))) return 'Credit Card must be 16 digits long'
       if (!(/^([0-9]{3})$/.test(this.cvv))) return 'Invalid field: Card Security Code'
     },
     processCardPayment() {
